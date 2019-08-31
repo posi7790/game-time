@@ -13,7 +13,7 @@ class Turn {
 
 	}
 
-	guessConsonent() {
+	guessConsonant() {
 
 	}
 
