@@ -1,8 +1,8 @@
 class Player {
 	constructor(name) {
 		this.name = name;
-		this.currentScore = 0;
 		this.totalScore = 0;
+		this.currentScore = 0;
 	}
 }
 
