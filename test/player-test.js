@@ -1,6 +1,5 @@
 import chai from 'chai';
 import Player from '../src/player.js';
-// const Player = require('../src/player.js')
 const expect = chai.expect;
 
 describe('Player', function() {

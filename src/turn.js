@@ -1,6 +1,6 @@
 class Turn {
-	construtor(player) {
-		this.player = player;
+	constructor(players) {
+		this.players = players;
 		this.guess = [];
 		this.endTurn = false;
 	}
