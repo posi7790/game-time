@@ -23,7 +23,11 @@ describe('Turn', function() {
   	expect(Turn).to.be.a('function');
   });
 
-  it('should have a player', function() {
-  	expect(turn.players[0].name).to.equal('Bob')
-  });
+  // it('should have a player', function() {
+  // 	expect(turn.players[0].name).to.equal('Bob')
+  // });
+
+  // it('should set a players score to zero if bankrupt', function() {
+  // 	expect(turn.players[0].name).to.equal('Bob')
+  // });
 });

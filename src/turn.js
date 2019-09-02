@@ -1,32 +1,33 @@
 class Turn {
-	constructor(players) {
-		this.players = players;
-		this.currentPlayer = 0;
+	constructor(player) {
+		this.player = player;
 	}
 
 	spinWheel(consonant) {
 		// spin wheel on DOM, get wedge value
 		if (wheel.wedge === 'BANKRUPT') {
-			this.players[currentPlayer].currentScore = 0;
+			this.player.currentScore = 0;
 		} else if (wheel.wedge === 'LOSE A TURN') {
 			this.endTurn();
 		} else {
-			this.players[currentPlayer].currentScore += wheel.wedge;
+			this.player.currentScore += wheel.wedge;
 			this.guessConsonant(consonant);
 		}
 	}
 
 	buyVowel(vowel) {
-		this.players[currentPlayer].currentScore -= 100;
-		if (puzzle.correctAnswer.includes(vowel)) {
-			// display each correct vowel on DOM
-		} else {
-			this.endTurn();
+		if (this.player.currentScore >= 100) {
+			this.player.currentScore -= 100;
+			if (puzzle.correctAnswer.toUpperCase().includes(vowel.toUpperCase())) {
+				// display each correct vowel on DOM
+			} else {
+				this.endTurn();
+			}
 		}
 	}
 
 	guessConsonant(consonant) {
-		if (puzzle.correctAnswer.includes(consonant)) {
+		if (puzzle.correctAnswer.toUpperCase().includes(consonant.toUpperCase())) {
 			// display each correct vowel on DOM
 		} else {
 			this.endTurn();
@@ -34,8 +35,8 @@ class Turn {
 	}
 
 	solvePuzzle(guess) {
-		if (guess === puzzle.correctAnswer) {
-			players[currentPlayer].totalScore += currentScore;
+		if (guess.toUpperCase() === puzzle.correctAnswer.toUpperCase()) {
+			player.totalScore += currentScore;
 			// end Round method
 		} else {
 			this.endTurn();
