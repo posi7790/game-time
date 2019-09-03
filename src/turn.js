@@ -50,13 +50,6 @@ class Turn {
       return false;
     }
   }
-
-  endTurn() {
-    this.currentPlayer++;
-    if (this.currentPlayer === 3) {
-      this.currentPlayer = 0;
-    }
-  }
 }
 
 export default Turn;

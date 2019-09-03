@@ -1,10 +1,14 @@
 class Round {
-  constructor(data, puzzleBank) {
+  constructor(players, data, puzzleBank) {
+    this.players = players;
     this.wheelData = [...data.wheel];
     this.puzzleBank = puzzleBank;
-    this.currentRound = 0;
     this.currentPlayer = 0;
     this.currentPuzzle = {};
+  }
+
+  getCurrentPlayer() {
+    return this.players(this.currentPlayer);
   }
 
   randomizeWheel() {
@@ -23,13 +27,6 @@ class Round {
     }
   }
 
-  endRound() {
-    this.currentRound++;
-    if (this.currentRound === 3) {
-      // end game or start bonus round
-    }
-  }
-
   choosePuzzle() {
     let randomPuzzleIndex = this.getRandomInteger(this.puzzleBank.length - 1);
     this.currentPuzzle = this.puzzleBank.splice(randomPuzzleIndex, 1);
@@ -37,6 +34,13 @@ class Round {
 
   getRandomInteger(max) {
     return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  endTurn() {
+    this.currentPlayer++;
+    if (this.currentPlayer === 3) {
+      this.currentPlayer = 0;
+    }
   }
 }
 
