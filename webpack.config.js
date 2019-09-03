@@ -11,23 +11,20 @@ module.exports = {
   mode: 'development',
   // CSS and file (image) loaders
   module: {
-    rules: [
-      {
-        test: /\.scss$/,
+    rules: [{
+        test: [/\.scss$/, /\.(css|ttf)$/],
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: [
-              {
-                loader: 'file-loader',
-                options: {
-                  name: '[name].[ext]',
-                  outputPath: 'images/',
-                  publicPath: 'images/'
-                }
-              }
-            ]
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'images/',
+            publicPath: 'images/'
+          }
+        }]
       }
     ],
   },
@@ -38,6 +35,6 @@ module.exports = {
     })
   ],
   devServer: {
-         contentBase: './dist'
+    contentBase: './dist'
   }
 };
