@@ -20,10 +20,11 @@ import data from './data'
 $('.button--start').click(() => {
   let players = [];
   players.push(
-    new Player($('.input--player-1').val()),
-    new Player($('.input--player-2').val()),
-    new Player($('.input--player-3').val())
+    new Player($('.input--player-1').val() || 'Player 1'),
+    new Player($('.input--player-2').val() || 'Player 2'),
+    new Player($('.input--player-3').val() || 'Player 3')
   )
+  console.log(players)
   let game = new Game(players, data);
   game.generatePuzzleBank();
 
@@ -31,6 +32,13 @@ $('.button--start').click(() => {
   // start a new round
   // pick a puzzle
   // generate new wheel
+
+  // remove current DOM page
+  $('.gameplay').hide();
+  $('.intro-page').fadeOut(2500);
+  $('.gameplay').fadeIn(8000);
+
+
   // update DOM to gameplay (put puzzle, wheel, player name, player score)
 
 });

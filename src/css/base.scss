@@ -5,16 +5,28 @@
 }
 
 body {
+  background-color: black;
+  font-family: 'Fredoka One', cursive;
+}
+
+.intro-page {
   background-image: url('../../images/game-show-background.png');
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: 'Fredoka One', cursive;
+  height: 1000px;
   text-align: center;
+  z-index: 10;
 }
 
 .heading {
   font-size: 8em;
-  margin: 30px 0px;
+  margin-bottom: 30px;
+  margin-top: 0px;
+}
+
+.form--names {
+  margin: 0px auto;
+  width: 800px;
 }
 
 .enter-names {
@@ -24,9 +36,10 @@ body {
 
 .name-input-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin: 15px 0px;
   vertical-align: middle;
+  width: 687px;
 }
 
 .name-input-label {
@@ -44,4 +57,13 @@ body {
   height: 100px;
   margin: 15px 0px;
   width: 300px;
+}
+
+.gameplay {
+  background-image: url('../../images/creepy.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 1000px;
+  text-align: center;
+  z-index: 1;
 }
