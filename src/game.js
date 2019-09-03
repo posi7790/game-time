@@ -1,3 +1,5 @@
+import Round from "./round";
+
 class Game {
   constructor(players, data) {
     this.players = players;
@@ -28,10 +30,21 @@ class Game {
     this.bonusPuzzle = combinedPuzzleBank[puzzleIndex];
   }
 
-  endRound() {
+  startRound() {
     this.currentRound++;
-    if (this.currentRound === 3) {
-      // end game or start bonus round
+    let round = new Round(this);
+    round.choosePuzzle();
+    round.randomizeWheel();
+  }
+
+  endRound() {
+    this.startRound();
+    if (this.currentRound === 4) {
+      // take player with highest total score
+      // let bonusRound = new BonusRound(player, bonusPuzzle, bonusWheel)
+    }
+    if (this.currentRound > 4) {
+      // end game - winner message with prize image (add bonus prize to total score)
     }
   }
 }

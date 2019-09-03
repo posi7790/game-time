@@ -12,6 +12,9 @@ import './images/turing-logo.png'
 console.log('This is the JavaScript entry file - your code begins here.');
 
 /* ------------------------------------- */
+import Game from './game'
+import Player from './player'
+import data from './data'
 
 // ** Event Listeners ** //
 $('.button--start').click(() => {
@@ -21,6 +24,13 @@ $('.button--start').click(() => {
     new Player($('.input--player-2').val()),
     new Player($('.input--player-3').val())
   )
+  let game = new Game(players, data);
+  game.generatePuzzleBank();
 
-  game = new Game(players);
+  // generate a new puzzlebank
+  // start a new round
+  // pick a puzzle
+  // generate new wheel
+  // update DOM to gameplay (put puzzle, wheel, player name, player score)
+
 });
