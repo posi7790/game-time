@@ -67,3 +67,73 @@ body {
   text-align: center;
   z-index: 1;
 }
+
+.game-section {
+  display: flex;
+}
+
+.wheel {
+  width: 25%;
+}
+
+.board {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  float: right;
+  height: 400px;
+  width: 75%;
+  margin: 20px none;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.word {
+  margin-left: 50px;
+}
+
+.character {
+  background-color: black;
+  border: white 5px solid;
+  color: white;
+  display: inline-block;
+  font-size: 3em;
+  height: 80px;
+  margin: 5px;
+  width: 80px;
+}
+
+.break {
+  display: block;
+}
+
+.space {
+  background-color: white;
+}
+
+.hidden {
+  color: black;
+}
+
+.player-section {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.button {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border-radius: 2px;
+  font-size: 2em;
+}
+
+.letter-section {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 5px;
+}

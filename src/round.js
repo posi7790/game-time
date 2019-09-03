@@ -30,7 +30,7 @@ class Round {
 
   choosePuzzle() {
     let randomPuzzleIndex = this.game.getRandomInteger(this.puzzleBank.length - 1);
-    this.currentPuzzle = this.puzzleBank.splice(randomPuzzleIndex, 1);
+    this.currentPuzzle = this.puzzleBank.splice(randomPuzzleIndex, 1)[0];
   }
 }
 

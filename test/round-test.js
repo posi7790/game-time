@@ -31,6 +31,7 @@ describe('Round', () => {
   it('should randomize wheel', () => {
     round.randomizeWheel();
     expect(round.wheelData).to.not.equal(data.wheel);
+    expect(round.wheelData.length).to.equal(data.wheel.length)
   });
 
   it('should choose random puzzle and remove it from puzzle bank', () => {

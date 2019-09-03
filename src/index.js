@@ -15,6 +15,8 @@ console.log('This is the JavaScript entry file - your code begins here.');
 import Game from './game'
 import Player from './player'
 import data from './data'
+import DOMupdates from './DOMupdates'
+import Round from './round';
 
 // ** Event Listeners ** //
 $('.button--start').click(() => {
@@ -24,21 +26,26 @@ $('.button--start').click(() => {
     new Player($('.input--player-2').val() || 'Player 2'),
     new Player($('.input--player-3').val() || 'Player 3')
   )
-  console.log(players)
+  // make new game
   let game = new Game(players, data);
+  // generate a new puzzlebank  
   game.generatePuzzleBank();
-
-  // generate a new puzzlebank
   // start a new round
+  let round = new Round(game);
   // pick a puzzle
+  round.choosePuzzle();
   // generate new wheel
-
-  // remove current DOM page
-  $('.gameplay').hide();
+  round.randomizeWheel();
+  // remove current DOM page and put game page
   $('.intro-page').fadeOut(2500);
   $('.gameplay').fadeIn(8000);
-
-
   // update DOM to gameplay (put puzzle, wheel, player name, player score)
+  players.forEach((player, index) => {
+    $(`.player-name--${index + 1}`).text(player.name);
+  })
+
+  DOMupdates.displayPuzzle(round.currentPuzzle);
+
+
 
 });
