@@ -12,7 +12,7 @@ module.exports = {
   // CSS and file (image) loaders
   module: {
     rules: [{
-      test: /\.scss$/,
+      test: [/\.scss$/, /\.(css|ttf)$/],
       use: ['style-loader', 'css-loader', 'sass-loader'],
     },
     {
