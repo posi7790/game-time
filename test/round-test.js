@@ -1,8 +1,8 @@
 import chai from 'chai';
-import Round from '../src/round.js';
 import Game from '../src/game.js';
-import data from '../src/data.js';
+import Round from '../src/round.js';
 import Player from '../src/player.js';
+import data from '../src/data.js';
 const expect = chai.expect;
 
 describe('Round', () => {
@@ -15,9 +15,9 @@ describe('Round', () => {
     player2 = new Player('Eduardo');
     player3 = new Player('Pol');
     players = [player1, player2, player3]
-    game = new Game(data);
+    game = new Game(players, data);
     game.generatePuzzleBank();
-    round = new Round(players, data, game.puzzleBank);
+    round = new Round(game);
   });
 
   it('should be a function', () => {

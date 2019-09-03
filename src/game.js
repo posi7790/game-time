@@ -1,6 +1,7 @@
 class Game {
   constructor(players, data) {
-    this.wheelData = data.wheel;
+    this.players = players;
+    this.wheelData = [...data.wheel];
     this.puzzleData = data.puzzles;
     this.puzzleBank = [];
     this.bonusPuzzle = {};

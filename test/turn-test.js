@@ -17,11 +17,11 @@ describe('Turn', function () {
     player2 = new Player('Eduardo');
     player3 = new Player('Pol');
     players = [player1, player2, player3]
-    game = new Game(data);
+    game = new Game(players, data);
     game.generatePuzzleBank();
-    round = new Round(players, data, game.puzzleBank)
+    round = new Round(game)
     turn = new Turn(round);
-    turn.puzzle = data.puzzles.one_word_answers.puzzle_bank[0]
+    turn.puzzle = data.puzzles.one_word_answers.puzzle_bank[0];
   });
 
   it('should be a function', () => {

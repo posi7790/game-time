@@ -2,10 +2,10 @@ class Round {
   constructor(game) {
     this.game = game;
     this.players = game.players;
-    this.wheelData = [...data.wheel];
-    this.puzzleBank = puzzleBank;
-    this.currentPlayer = 0;
+    this.wheelData = game.wheelData;
+    this.puzzleBank = game.puzzleBank;
     this.currentPuzzle = {};
+    this.currentPlayer = 0;
   }
 
   getCurrentPlayer() {
