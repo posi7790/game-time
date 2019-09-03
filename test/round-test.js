@@ -24,6 +24,10 @@ describe('Round', () => {
     expect(Round).to.be.a('function');
   });
 
+  it('should get the current player', () => {
+    expect(round.getCurrentPlayer()).to.eql(player1);
+  });
+
   it('should randomize wheel', () => {
     round.randomizeWheel();
     expect(round.wheelData).to.not.equal(data.wheel);

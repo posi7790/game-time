@@ -6,6 +6,10 @@ class Game {
     this.currentRound = 0;
   }
 
+  getRandomInteger(max) {
+    return Math.floor(Math.random() * Math.floor(max))
+  }
+
   generatePuzzleBank() {
     let keys = Object.keys(this.puzzleData);
     keys.forEach(key => {
@@ -14,10 +18,6 @@ class Game {
       let puzzle = puzzleByWordLength[puzzleIndex];
       this.puzzleBank.push(puzzle);
     })
-  }
-
-  getRandomInteger(max) {
-    return Math.floor(Math.random() * Math.floor(max))
   }
 
   generateBonusPuzzle() {

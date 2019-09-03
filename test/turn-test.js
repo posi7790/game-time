@@ -36,15 +36,15 @@ describe('Turn', function () {
     turn.player.currentScore += 200;
     expect(turn.buyVowel('a')).to.equal(true);
     expect(turn.buyVowel('e')).to.equal(false);
-  })
+  });
 
   it('should be able to guess consonant', () => {
     expect(turn.guessConsonant('m')).to.equal(true);
     expect(turn.guessConsonant('z')).to.equal(false);
-  })
+  });
 
   it('should be able to solve the puzzle', () => {
     expect(turn.solvePuzzle('armchair')).to.equal(true);
     expect(turn.solvePuzzle('legchair')).to.equal(false);
-  })
+  });
 });
