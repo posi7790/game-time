@@ -3,7 +3,6 @@
 
 // An example of how you import jQuery into a JS file if you use jQuery in that file
 import $ from 'jquery';
-
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import './css/normalize.css';
@@ -11,3 +10,17 @@ import './css/normalize.css';
 import './images/turing-logo.png'
 
 console.log('This is the JavaScript entry file - your code begins here.');
+
+/* ------------------------------------- */
+
+// ** Event Listeners ** //
+$('.button--start').click(() => {
+  let players = [];
+  players.push(
+    new Player($('.input--player-1').val()),
+    new Player($('.input--player-2').val()),
+    new Player($('.input--player-3').val())
+  )
+
+  game = new Game(players);
+});

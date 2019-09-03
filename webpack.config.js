@@ -12,20 +12,20 @@ module.exports = {
   // CSS and file (image) loaders
   module: {
     rules: [{
-        test: [/\.scss$/, /\.(css|ttf)$/],
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'images/',
-            publicPath: 'images/'
-          }
-        }]
-      }
+      test: [/\.scss$/, /\.(css|ttf)$/],
+      use: ['style-loader', 'css-loader', 'sass-loader'],
+    },
+    {
+      test: /\.(png|svg|jpg|gif)$/,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'images/',
+          publicPath: 'images/'
+        }
+      }]
+    }
     ],
   },
   // Below is needed for webpack-dev-server
