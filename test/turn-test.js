@@ -7,19 +7,21 @@ import Game from '../src/game.js';
 const expect = chai.expect;
 
 describe('Turn', function () {
+  let player1, player2, player3;
+  let players;
   let turn;
-  let player;
   let round;
   let game;
   beforeEach(() => {
+    player1 = new Player('Sam');
+    player2 = new Player('Eduardo');
+    player3 = new Player('Pol');
+    players = [player1, player2, player3]
     game = new Game(data);
-    round = new Round(data, game.puzzleBank)
-    player = new Player('Bob');
-    turn = new Turn(player, data.puzzles.one_word_answers.puzzle_bank[0], data.wheel);
-  });
-
-  it('should return true', () => {
-    expect(true).to.equal(true);
+    game.generatePuzzleBank();
+    round = new Round(players, data, game.puzzleBank)
+    turn = new Turn(round);
+    turn.puzzle = data.puzzles.one_word_answers.puzzle_bank[0]
   });
 
   it('should be a function', () => {
@@ -27,7 +29,7 @@ describe('Turn', function () {
   });
 
   it('should have a player', () => {
-    expect(turn.player.name).to.equal('Bob')
+    expect(turn.player.name).to.equal('Sam')
   });
 
   it('should be able to buy vowel', () => {

@@ -8,7 +8,7 @@ class Round {
   }
 
   getCurrentPlayer() {
-    return this.players(this.currentPlayer);
+    return this.players[this.currentPlayer];
   }
 
   randomizeWheel() {
@@ -34,13 +34,6 @@ class Round {
 
   getRandomInteger(max) {
     return Math.floor(Math.random() * Math.floor(max));
-  }
-
-  endTurn() {
-    this.currentPlayer++;
-    if (this.currentPlayer === 3) {
-      this.currentPlayer = 0;
-    }
   }
 }
 

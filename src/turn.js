@@ -1,8 +1,10 @@
 class Turn {
-  constructor(player, puzzle, wheel) {
-    this.player = player;
-    this.puzzle = puzzle;
-    this.wheel = wheel;
+  constructor(round) {
+    this.round = round;
+    this.player = round.getCurrentPlayer();
+    round.choosePuzzle();
+    this.puzzle = round.currentPuzzle[0];
+    this.wheel = round.wheelData;
   }
 
   spinWheel(consonant) {
@@ -48,6 +50,13 @@ class Turn {
     } else {
       this.endTurn();
       return false;
+    }
+  }
+
+  endTurn() {
+    this.round.currentPlayer++;
+    if (this.round.currentPlayer === 3) {
+      this.round.currentPlayer = 0;
     }
   }
 }
