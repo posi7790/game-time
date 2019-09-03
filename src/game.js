@@ -26,6 +26,4 @@ class Game {
   }
 }
 
-if (typeof module !== 'undefined') {
-  module.exports = Game;
-}
+export default Game;
