@@ -6,7 +6,9 @@
 
 body {
   background-color: black;
-  font-family: 'Fredoka One', cursive;
+  color: white;
+  font-family: 'Lacquer',
+    sans-serif;
 }
 
 .intro-page {
@@ -53,7 +55,8 @@ body {
 }
 
 .button {
-  font-size: 2em;
+  color: white;
+  font-size: 1.8em;
   height: 100px;
   margin: 15px 0px;
   width: 300px;
@@ -92,10 +95,9 @@ body {
 .character {
   background-color: black;
   border: white 5px solid;
-  color: white;
   display: inline-block;
   font-size: 2em;
-  height: 50px;
+  height: 65px;
   margin: 5px;
   width: 50px;
 }
@@ -114,23 +116,37 @@ body {
 
 .player-section {
   background-color: rgba(0, 0, 0, 0.3);
-  color: white;
   display: flex;
   justify-content: space-around;
   width: 100%;
 }
 
+.player-name {
+  font-size: 2em;
+  margin: 20px 0px 5px 0px;
+}
+
+.player-score {
+  margin: 5px 0px;
+}
+
+.player-total-score {
+  margin: 5px 0px 20px 0px;
+}
+
 .button {
   background-color: rgba(0, 0, 0, 0.3);
-  color: white;
   border-radius: 2px;
   font-size: 2em;
 }
 
 .letter-section {
   background-color: rgba(0, 0, 0, 0.3);
-  color: white;
   display: flex;
   justify-content: space-around;
   padding: 15px 5px;
+}
+
+.enabled {
+  cursor: pointer;
 }
