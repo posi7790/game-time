@@ -201,3 +201,31 @@ body {
   display: flex;
   margin: auto;
 }
+
+.wheel {
+  height:200px;
+  width: 100px;
+  background-color: aqua;
+  overflow: auto;
+  scroll-behavior: smooth;
+  animation: scroll infinite;
+}
+
+.wedge {
+  min-height: 200px;
+  width: 98px;
+  text-align: center;
+  background-color: tomato;
+  display: flex;
+  flex-direction: column;
+  // flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}

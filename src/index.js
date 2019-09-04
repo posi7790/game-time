@@ -45,6 +45,7 @@ function startNewGame() {
   domUpdates.fadeOutIntroPage();
   domUpdates.appendPlayerInfo(players);
   domUpdates.displayPuzzle(round.currentPuzzle);
+  domUpdates.displayWheel(round.wheelData);
 }
 
 function instantiatePlayers() {
@@ -88,6 +89,7 @@ function resetGame() {
   domUpdates.appendPlayerInfo(players);
 
   domUpdates.displayPuzzle(round.currentPuzzle);
+  domUpdates.displayWheel(round.wheelData);
 }
 
 $('.button--quit').click(() => {

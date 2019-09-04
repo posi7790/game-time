@@ -13,6 +13,15 @@ class Turn {
     // spin wheel on DOM, get wedge value
     this.wedge = this.wheel[this.round.game.getRandomInteger(this.wheel.length - 1)];
     console.log(this.wedge)
+    let wedges = Array.from($('.wedge'))
+    console.log(typeof wedges);
+    wedges.forEach(wedge => {
+      console.log(parseInt(wedge.innerText), this.wedge)
+        if (parseInt(wedge.innerText) === this.wedge) {
+          console.log("INSIDE");
+           wedge.scrollIntoView();
+        }
+      });
     if (this.wedge === 'BANKRUPT') {
       this.player.currentScore = 0;
     } else if (this.wedge === 'LOSE A TURN') {

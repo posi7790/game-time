@@ -53,5 +53,12 @@ export default {
     $('.board').html(html);
   },
 
+  displayWheel(wheelData) {
+    let html = ``;
+    wheelData.forEach(wedge => {
+      html += `<div class="wedge">${wedge}</div>`;
+    });
+    $('.wheel').html(html);
+  }
 
 }
