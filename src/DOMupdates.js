@@ -4,7 +4,7 @@ export default {
 
   fadeOutIntroPage() {
     $('.intro-page').fadeOut(2500);
-    $('.gameplay').fadeIn(8000);
+    $('.gameplay').delay(2500).fadeIn(4000);
   },
 
   appendPlayerInfo(players) {

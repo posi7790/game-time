@@ -10,7 +10,7 @@ body {
 }
 
 .intro-page {
-  background-image: url('../../images/game-show-background.png');
+  background-image: url('../../images/intro-circus.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 1000px;
@@ -60,9 +60,9 @@ body {
 }
 
 .gameplay {
-  background-image: url('../../images/creepy.jpg');
+  background-image: url('../../images/clown.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   height: 1000px;
   text-align: center;
   z-index: 1;
@@ -77,19 +77,16 @@ body {
 }
 
 .board {
-  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  float: right;
-  height: 400px;
+  justify-content: center;
   width: 75%;
-  margin: 20px none;
   padding: 10px;
-  vertical-align: middle;
+  margin: 20px 0px;
 }
 
 .word {
-  margin-left: 50px;
+  margin-right: 60px;
 }
 
 .character {
@@ -97,10 +94,10 @@ body {
   border: white 5px solid;
   color: white;
   display: inline-block;
-  font-size: 3em;
-  height: 80px;
+  font-size: 2em;
+  height: 50px;
   margin: 5px;
-  width: 80px;
+  width: 50px;
 }
 
 .break {
