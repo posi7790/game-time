@@ -95,9 +95,10 @@ body {
 }
 
 .board {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-end;
   width: 75%;
   padding: 10px;
   margin: 20px 0px;
