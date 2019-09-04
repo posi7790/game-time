@@ -2,16 +2,32 @@ import $ from 'jquery';
 
 export default {
 
+  fadeInQuitPage() {
+    $('.gameplay').fadeOut(2500);
+    $('.quit-screen').delay(2500).fadeIn(4000);
+  },
+
+  appendPlayerQuit(player) {
+    $().text(`${player.name} has died`)
+  },
+
   fadeOutIntroPage() {
     $('.intro-page').fadeOut(2500);
     $('.gameplay').delay(2500).fadeIn(4000);
   },
 
+  fadeInIntroPage() {
+    $('.quit-screen').fadeOut(2500);
+    $('.intro-page').delay(2500).fadeIn(4000);
+  },
+
   appendPlayerInfo(players) {
     players.forEach((player, index) => {
       $(`.player-name--${index + 1}`).text(player.name);
-      $(`player-score--${index + 1}`).text(`Round Score: ${player.currentScore}`);
-      $(`player-total-score--${index + 1}`).text(`Game Score: ${player.totalScore}`);
+      $(`player-score--${index + 1}`)
+        .text(`Round Score: ${player.currentScore}`);
+      $(`player-total-score--${index + 1}`)
+        .text(`Game Score: ${player.totalScore}`);
     })
   },
 
