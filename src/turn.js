@@ -1,21 +1,43 @@
+import $ from 'jquery';
+
 class Turn {
   constructor(round) {
     this.round = round;
     this.player = round.getCurrentPlayer();
-    round.choosePuzzle();
-    this.puzzle = round.currentPuzzle[0];
+    this.puzzle = round.currentPuzzle;
     this.wheel = round.wheelData;
+    this.wedge = null;
   }
 
-  spinWheel(consonant) {
+  spinWheel() {
     // spin wheel on DOM, get wedge value
-    if (wheel.wedge === 'BANKRUPT') {
+    this.wedge = this.wheel[this.round.game.getRandomInteger(this.wheel.length - 1)];
+    console.log(this.wedge)
+    if (this.wedge === 'BANKRUPT') {
       this.player.currentScore = 0;
-    } else if (wheel.wedge === 'LOSE A TURN') {
+    } else if (this.wedge === 'LOSE A TURN') {
       this.endTurn();
     } else {
-      this.player.currentScore += wheel.wedge;
-      this.guessConsonant(consonant);
+      // enable consonants
+      $('.consonant').css("pointer-events", "auto")
+      // disable everything else
+      // prompt user to pick a consonant
+    }
+  }
+
+  guessConsonant(consonant) {
+    $('.consonant').css("pointer-events", "none")
+    if (this.puzzle.correct_answer.toUpperCase().includes(consonant.toUpperCase())) {
+      $(`*[data-letter="${consonant}"]`).removeClass('hidden');
+      let numberOfInstances = this.puzzle.correct_answer.toUpperCase().split('').filter(letter => letter === consonant).length;
+      this.player.currentScore += this.wedge * numberOfInstances;
+      $(`.player-score--${this.player.id}`).text(`Round Score: ${this.player.currentScore}`);
+      console.log(true)
+      return true;
+    } else {
+      this.endTurn();
+      console.log(false)
+      return false;
     }
   }
 
@@ -32,16 +54,6 @@ class Turn {
     }
   }
 
-  guessConsonant(consonant) {
-    if (this.puzzle.correct_answer.toUpperCase().includes(consonant.toUpperCase())) {
-      return true;
-      // display each correct vowel on DOM
-    } else {
-      this.endTurn();
-      return false;
-    }
-  }
-
   solvePuzzle(guess) {
     if (guess.toUpperCase() === this.puzzle.correct_answer.toUpperCase()) {
       this.player.totalScore += this.player.currentScore;
@@ -51,6 +63,10 @@ class Turn {
       this.endTurn();
       return false;
     }
+  }
+
+  quitGame() {
+
   }
 
   endTurn() {

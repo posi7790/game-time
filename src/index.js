@@ -17,24 +17,30 @@ import Player from './player'
 import data from './data'
 import domUpdates from './domUpdates'
 import Round from './round';
+import Turn from './turn';
 
 // ** Event Listeners ** //
+let game, round, turn, players;
+
+
 $('.button--start').click(() => {
   startNewGame()
 });
 
 function startNewGame() {
-  let players = instantiatePlayers();
+  players = instantiatePlayers();
   // make new game
-  let game = new Game(players, data);
+  game = new Game(players, data);
   // generate a new puzzlebank  
   game.generatePuzzleBank();
   // start a new round
-  let round = new Round(game);
+  round = new Round(game);
   // pick a puzzle
   round.choosePuzzle();
   // generate new wheel
   round.randomizeWheel();
+  // start first players turn
+  turn = new Turn(round);
 
   domUpdates.fadeOutIntroPage();
   domUpdates.appendPlayerInfo(players);
@@ -44,9 +50,9 @@ function startNewGame() {
 function instantiatePlayers() {
   let players = [];
   players.push(
-    new Player($('.input--player-1').val() || 'Player 1'),
-    new Player($('.input--player-2').val() || 'Player 2'),
-    new Player($('.input--player-3').val() || 'Player 3')
+    new Player(1, $('.input--player-1').val() || 'Player 1'),
+    new Player(2, $('.input--player-2').val() || 'Player 2'),
+    new Player(3, $('.input--player-3').val() || 'Player 3')
   )
   return players;
 }
@@ -55,7 +61,11 @@ $('.button--vowel').click(() => {
 
 });
 $('.button--spin').click(() => {
+  turn.spinWheel();
+});
 
+$('.consonant').click((event) => {
+  turn.guessConsonant(event.target.innerText);
 });
 
 $('.button--reset').click(() => {
@@ -81,5 +91,13 @@ function resetGame() {
 }
 
 $('.button--quit').click(() => {
+  quitGame();
+});
 
+function quitGame() {
+  domUpdates.fadeInQuitPage();
+}
+
+$('.button--new-game').click(() => {
+  domUpdates.fadeInIntroPage();
 });
