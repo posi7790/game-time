@@ -15,7 +15,7 @@ console.log('This is the JavaScript entry file - your code begins here.');
 import Game from './game'
 import Player from './player'
 import data from './data'
-import DOMupdates from './DOMupdates'
+import domUpdates from './domUpdates'
 import Round from './round';
 
 // ** Event Listeners ** //
@@ -36,9 +36,9 @@ function startNewGame() {
   // generate new wheel
   round.randomizeWheel();
 
-  DOMupdates.fadeOutIntroPage();
-  DOMupdates.appendPlayerInfo(players);
-  DOMupdates.displayPuzzle(round.currentPuzzle);
+  domUpdates.fadeOutIntroPage();
+  domUpdates.appendPlayerInfo(players);
+  domUpdates.displayPuzzle(round.currentPuzzle);
 }
 
 function instantiatePlayers() {
@@ -75,9 +75,9 @@ function resetGame() {
   // generate new wheel
   round.randomizeWheel();
 
-  DOMupdates.appendPlayerInfo(players);
+  domUpdates.appendPlayerInfo(players);
 
-  DOMupdates.displayPuzzle(round.currentPuzzle);
+  domUpdates.displayPuzzle(round.currentPuzzle);
 }
 
 $('.button--quit').click(() => {

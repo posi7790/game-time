@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  outline: none;
 }
 
 body {
@@ -60,6 +61,21 @@ body {
   height: 100px;
   margin: 15px 0px;
   width: 300px;
+}
+
+.button:disabled {
+  cursor: default;
+  opacity: 0.2;
+}
+
+.button:enabled:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
+}
+
+.button:active {
+  border-color: red;
+  color: red;
 }
 
 .gameplay {
@@ -137,6 +153,7 @@ body {
 .button {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 2px;
+  cursor: pointer;
   font-size: 2em;
 }
 
@@ -147,6 +164,14 @@ body {
   padding: 15px 5px;
 }
 
-.enabled {
+.pick-letter {
   cursor: pointer;
+}
+
+.pick-letter:hover {
+  transform: scale(1.02);
+}
+
+.pick-letter:active {
+  color: red;
 }
