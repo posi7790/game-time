@@ -20,12 +20,11 @@ import Round from './round';
 
 // ** Event Listeners ** //
 $('.button--start').click(() => {
-  let players = [];
-  players.push(
-    new Player($('.input--player-1').val() || 'Player 1'),
-    new Player($('.input--player-2').val() || 'Player 2'),
-    new Player($('.input--player-3').val() || 'Player 3')
-  )
+  startNewGame()
+});
+
+function startNewGame() {
+  let players = instantiatePlayers();
   // make new game
   let game = new Game(players, data);
   // generate a new puzzlebank  
@@ -36,16 +35,51 @@ $('.button--start').click(() => {
   round.choosePuzzle();
   // generate new wheel
   round.randomizeWheel();
-  // remove current DOM page and put game page
-  $('.intro-page').fadeOut(2500);
-  $('.gameplay').fadeIn(8000);
-  // update DOM to gameplay (put puzzle, wheel, player name, player score)
-  players.forEach((player, index) => {
-    $(`.player-name--${index + 1}`).text(player.name);
-  })
+
+  DOMupdates.fadeOutIntroPage();
+  DOMupdates.appendPlayerInfo(players);
+  DOMupdates.displayPuzzle(round.currentPuzzle);
+}
+
+function instantiatePlayers() {
+  let players = [];
+  players.push(
+    new Player($('.input--player-1').val() || 'Player 1'),
+    new Player($('.input--player-2').val() || 'Player 2'),
+    new Player($('.input--player-3').val() || 'Player 3')
+  )
+  return players;
+}
+
+$('.button--vowel').click(() => {
+
+});
+$('.button--spin').click(() => {
+
+});
+
+$('.button--reset').click(() => {
+  resetGame();
+});
+
+function resetGame() {
+  let players = instantiatePlayers();
+  // make new game
+  let game = new Game(players, data);
+  // generate a new puzzlebank  
+  game.generatePuzzleBank();
+  // start a new round
+  let round = new Round(game);
+  // pick a puzzle
+  round.choosePuzzle();
+  // generate new wheel
+  round.randomizeWheel();
+
+  DOMupdates.appendPlayerInfo(players);
 
   DOMupdates.displayPuzzle(round.currentPuzzle);
+}
 
-
+$('.button--quit').click(() => {
 
 });
