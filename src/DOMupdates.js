@@ -23,10 +23,12 @@ export default {
       html += `<div class="word">`
       let characters = word.split('');
       characters.forEach(character => {
-        if (character === '-' || character === '\'' || character === '&') {
-          html += `<span class="character symbol">${character}</span>`
+        if (character === '-' || character === '&') {
+          html += `</div><div class="word"><span class="character symbol">${character}</span></div><div class="word">`;
+        } else if (character === '\'') {
+          html += `<span class="character symbol">${character}</span>`;
         } else {
-          html += `<span class="character letter hidden">${character}</span>`
+          html += `<span class="character letter hidden" data-letter="${character}">${character}</span>`;
         }
       });
       html += `</div>`
