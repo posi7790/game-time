@@ -2,10 +2,10 @@ class Round {
   constructor(game) {
     this.game = game;
     this.players = game.players;
-    this.wheelData = [...data.wheel];
-    this.puzzleBank = puzzleBank;
-    this.currentPlayer = 0;
+    this.wheelData = game.wheelData;
+    this.puzzleBank = game.puzzleBank;
     this.currentPuzzle = {};
+    this.currentPlayer = 0;
   }
 
   getCurrentPlayer() {
@@ -29,12 +29,8 @@ class Round {
   }
 
   choosePuzzle() {
-    let randomPuzzleIndex = this.getRandomInteger(this.puzzleBank.length - 1);
-    this.currentPuzzle = this.puzzleBank.splice(randomPuzzleIndex, 1);
-  }
-
-  getRandomInteger(max) {
-    return Math.floor(Math.random() * Math.floor(max));
+    let randomPuzzleIndex = this.game.getRandomInteger(this.puzzleBank.length - 1);
+    this.currentPuzzle = this.puzzleBank.splice(randomPuzzleIndex, 1)[0];
   }
 }
 

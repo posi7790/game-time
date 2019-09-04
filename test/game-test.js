@@ -1,12 +1,19 @@
 import chai from 'chai';
 import Game from '../src/game.js';
+import Player from '../src/player.js';
 import data from '../src/data.js';
 const expect = chai.expect;
 
 describe('Game', function () {
+  let player1, player2, player3;
+  let players;
   let game;
   beforeEach(() => {
-    game = new Game(data);
+    player1 = new Player('Sam');
+    player2 = new Player('Eduardo');
+    player3 = new Player('Pol');
+    players = [player1, player2, player3]
+    game = new Game(players, data);
   });
 
   it('should be a function', function () {

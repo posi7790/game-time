@@ -3,28 +3,93 @@
 
 <head>
   <title>Wheel of Misfortune</title>
-  <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <h1 class='heading'>Wheel of MisFortune</h1>
-  <form class='form form--names'>
-    <h2 class='enter-names'>Enter Names:</h2>
-    <div class='name-input-wrapper'>
-      <label class='name-input-label' for="input--player-1">Player 1: </label>
-      <input class='name-input input--player-1' type="text">
-    </div>
-    <div class='name-input-wrapper'>
-      <label class='name-input-label' for="input--player-2">Player 2: </label>
-      <input class='name-input input--player-2' type="text">
-    </div>
-    <div class='name-input-wrapper'>
-      <label class='name-input-label' for="input--player-3">Player 3: </label>
-      <input class='name-input input--player-3' type="text">
-    </div>
-  </form>
-  <button class='button button--start'>Start Game</button>
+  <main class="intro-page">
+    <h1 class="heading">Wheel of MisFortune</h1>
+    <form class="form form--names">
+      <h2 class="enter-names">Enter Names:</h2>
+      <div class="name-input-wrapper">
+        <label class="name-input-label" for="input--player-1">Player 1: </label>
+        <input class="name-input input--player-1" type="text">
+      </div>
+      <div class="name-input-wrapper">
+        <label class="name-input-label" for="input--player-2">Player 2: </label>
+        <input class="name-input input--player-2" type="text">
+      </div>
+      <div class="name-input-wrapper">
+        <label class="name-input-label" for="input--player-3">Player 3: </label>
+        <input class="name-input input--player-3" type="text">
+      </div>
+    </form>
+    <button class="button button--start">Start Game</button>
+  </main>
+  <main hidden class="gameplay">
+    <section class="game-section">
+      <div class='wheel'>
+
+      </div>
+      <div class="board">
+
+      </div>
+    </section>
+    <section class="player-section">
+      <div class="player player1-info">
+        <p class='player-name player-name--1'>Player 1</p>
+        <p class='player-score player-score--1'>Round Score: 0</p>
+        <p class='player-total-score player-total-score--1'>Game Score: 0</p>
+      </div>
+      <div class="player player2-info">
+        <p class='player-name player-name--2'>Player 2</p>
+        <p class='player-score player-score--2'>Round Score: 0</p>
+        <p class='player-total-score player-total-score--2'>Game Score: 0</p>
+      </div>
+      <div class="player player3-info">
+        <p class='player-name player-name--3'>Player 3</p>
+        <p class='player-score player-score--3'>Round Score: 0</p>
+        <p class='player-total-score player-total-score--3'>Game Score: 0</p>
+      </div>
+    </section>
+    <section class="button-section">
+      <button class="button button--vowel" type="button">Buy a vowel</button>
+      <button class="button button--solve" type="button">Solve puzzle</button>
+      <button class="button button--spin" type="button">Spin wheel</button>
+      <button class="button button--reset" type="button">Reset game</button>
+      <button class="button button--quit" type="button">Quit game</button>
+    </section>
+    <section class="letter-section">
+      <span class="pick-letter">B</span>
+      <span class="pick-letter">C</span>
+      <span class="pick-letter">D</span>
+      <span class="pick-letter">F</span>
+      <span class="pick-letter">G</span>
+      <span class="pick-letter">H</span>
+      <span class="pick-letter">J</span>
+      <span class="pick-letter">K</span>
+      <span class="pick-letter">L</span>
+      <span class="pick-letter">M</span>
+      <span class="pick-letter">N</span>
+      <span class="pick-letter">P</span>
+      <span class="pick-letter">Q</span>
+      <span class="pick-letter">R</span>
+      <span class="pick-letter">S</span>
+      <span class="pick-letter">T</span>
+      <span class="pick-letter">V</span>
+      <span class="pick-letter">W</span>
+      <span class="pick-letter">X</span>
+      <span class="pick-letter">Y</span>
+      <span class="pick-letter">Z</span>
+      <span>|</span>
+      <span class="pick-letter">A</span>
+      <span class="pick-letter">E</span>
+      <span class="pick-letter">I</span>
+      <span class="pick-letter">O</span>
+      <span class="pick-letter">U</span>
+    </section>
+  </main>
 </body>
 
 </html>
