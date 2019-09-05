@@ -41,14 +41,12 @@ class Turn {
       this.player.updateRoundScore(this.wedge * numberOfInstances);
       $(`.player-score--${this.player.id}`)
         .text(`Round Score: ${this.player.roundScore}`);
-      console.log(true)
       if (this.player.roundScore >= 100) {
         $('.button--vowel').attr("disabled", false);
       }
       return true;
     } else {
       this.endTurn();
-      console.log(false)
       return false;
     }
   }
@@ -61,10 +59,8 @@ class Turn {
       if (this.puzzle.correct_answer.toUpperCase()
         .includes(vowel.toUpperCase())) {
         $(`*[data-letter="${vowel}"]`).removeClass('hidden');
-        console.log(true, vowel);
       } else {
         this.endTurn();
-        console.log(false, vowel);
       }
     }
   }
@@ -85,7 +81,6 @@ class Turn {
   }
 
   endTurn() {
-    console.log('End Turn')
     $('.button--spin').removeAttr("disabled");
     $(`.player${this.player.id}-info`).removeClass('current-player');
     this.round.currentPlayer++;
