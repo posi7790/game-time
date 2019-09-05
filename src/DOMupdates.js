@@ -55,6 +55,7 @@ export default {
       html += `</div>`
     })
 
+    $('.category').text(puzzle.category)
     $('.board').html(html);
   },
 

@@ -87,6 +87,7 @@ class Turn {
   endTurn() {
     console.log('End Turn')
     $('.button--spin').removeAttr("disabled");
+    $(`.player${this.player.id}-info`).removeClass('current-player');
     this.round.currentPlayer++;
     if (this.round.currentPlayer === 3) {
       this.round.currentPlayer = 0;
@@ -95,6 +96,7 @@ class Turn {
     if (this.player.roundScore >= 100) {
       $('.button--vowel').attr("disabled", false);
     }
+    $(`.player${this.player.id}-info`).addClass('current-player');
   }
 }
 
