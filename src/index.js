@@ -41,7 +41,7 @@ function startNewGame() {
   round.randomizeWheel();
   // start first players turn
   turn = new Turn(round);
-
+  // update DOM
   domUpdates.fadeOutIntroPage();
   domUpdates.appendPlayerInfo(players);
   domUpdates.displayPuzzle(round.currentPuzzle);
@@ -86,8 +86,8 @@ function resetGame() {
   // generate new wheel
   round.randomizeWheel();
 
+  // update DOM
   domUpdates.appendPlayerInfo(players);
-
   domUpdates.displayPuzzle(round.currentPuzzle);
   domUpdates.displayWheel(round.wheelData);
 }

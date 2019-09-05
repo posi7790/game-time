@@ -14,7 +14,6 @@ class Turn {
     $('.button--spin').attr("disabled", true);
     this.wedge = `${this.wheel[this.round.game
       .getRandomInteger(this.wheel.length - 1)]}`;
-    console.log(this.wedge)
     let wedges = Array.from($('.wedge'))
     wedges.forEach(wedge => {
       if (wedge.innerText === this.wedge) {
@@ -22,19 +21,22 @@ class Turn {
       }
     });
     if (this.wedge === 'BANKRUPT') {
-      this.player.zeroCurrentScore();
+      this.player.zeroRoundScore();
+      $(`.player-score--${this.player.id}`)
+        .text(`Round Score: ${this.player.roundScore}`);
+      this.endTurn();
     } else if (this.wedge === 'LOSE A TURN') {
       this.endTurn();
     } else {
       // enable consonants
-      $('.consonant').css("pointer-events", "auto")
+      $('.consonant').addClass('ready-to-pick');
       // disable everything else
       // prompt user to pick a consonant
     }
   }
 
   guessConsonant(consonant) {
-    $('.consonant').css("pointer-events", "none")
+    $('.consonant').removeClass('ready-to-pick');
     $('.button--spin').removeAttr("disabled")
     if (this.puzzle.correct_answer.toUpperCase()
       .includes(consonant.toUpperCase())) {
@@ -43,9 +45,9 @@ class Turn {
         this.puzzle.correct_answer.toUpperCase().split('').filter(letter => {
           return letter === consonant
         }).length;
-      this.player.updateCurrentScore(this.wedge * numberOfInstances);
+      this.player.updateRoundScore(this.wedge * numberOfInstances);
       $(`.player-score--${this.player.id}`)
-        .text(`Round Score: ${this.player.currentScore}`);
+        .text(`Round Score: ${this.player.roundScore}`);
       console.log(true)
       return true;
     } else {
@@ -57,7 +59,7 @@ class Turn {
 
   buyVowel(vowel) {
     if (this.player.currentScore >= 100) {
-      this.player.updateCurrentScore(-100);
+      this.player.updateRoundScore(-100);
       if (this.puzzle.correct_answer.toUpperCase()
         .includes(vowel.toUpperCase())) {
         // display each correct vowel on DOM
@@ -71,7 +73,7 @@ class Turn {
 
   solvePuzzle(guess) {
     if (guess.toUpperCase() === this.puzzle.correct_answer.toUpperCase()) {
-      this.player.updateTotalScore(this.player.currentScore);
+      this.player.updateGameScore(this.player.roundScore);
       // end Round method
       return true;
     } else {

@@ -199,7 +199,14 @@ body {
 
 .pick-letter {
   cursor: pointer;
+  opacity: 0.3;
   pointer-events: none;
+}
+
+.ready-to-pick {
+  cursor: pointer;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .pick-letter:hover {

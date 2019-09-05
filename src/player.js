@@ -2,20 +2,20 @@ class Player {
   constructor(id, name) {
     this.id = id;
     this.name = name;
-    this.totalScore = 0;
-    this.currentScore = 0;
+    this.gameScore = 0;
+    this.roundScore = 0;
   }
 
-  updateCurrentScore(score) {
-    this.currentScore += score;
+  updateRoundScore(score) {
+    this.roundScore += score;
   }
 
-  updateTotalScore(score) {
-    this.totalScore += score;
+  updateGameScore(score) {
+    this.gameScore += score;
   }
 
-  zeroCurrentScore() {
-    this.currentScore = 0;
+  zeroRoundScore() {
+    this.roundScore = 0;
   }
 }
 
