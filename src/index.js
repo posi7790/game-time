@@ -66,7 +66,8 @@ $('.button--vowel').click(() => {
 $('.vowel').click((event) => {
   console.log(event.target.innerText)
   turn.buyVowel(event.target.innerText);
-  $('.vowel').removeClass('ready-to-pick')
+  $(event.target).addClass('picked');
+  $('.vowel').removeClass('ready-to-pick');
 });
 
 $('.button--spin').click(() => {
@@ -76,6 +77,7 @@ $('.button--spin').click(() => {
 
 $('.consonant').click((event) => {
   turn.guessConsonant(event.target.innerText);
+  $(event.target).addClass('picked');
   $('.consonant').removeClass('ready-to-pick');
   $('.button--spin').removeAttr("disabled");
 });
