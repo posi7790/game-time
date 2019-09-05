@@ -64,7 +64,6 @@ $('.button--vowel').click(() => {
 });
 
 $('.vowel').click((event) => {
-  console.log(event.target.innerText)
   turn.buyVowel(event.target.innerText);
   $(event.target).addClass('picked');
   $('.vowel').removeClass('ready-to-pick');

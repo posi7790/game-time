@@ -90,6 +90,8 @@ class Turn {
     this.player = this.round.getCurrentPlayer();
     if (this.player.roundScore >= 100) {
       $('.button--vowel').attr("disabled", false);
+    } else {
+      $('.button--vowel').attr("disabled", true);
     }
     $(`.player${this.player.id}-info`).addClass('current-player');
   }
