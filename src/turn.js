@@ -14,11 +14,8 @@ class Turn {
     this.wedge = this.wheel[this.round.game.getRandomInteger(this.wheel.length - 1)];
     console.log(this.wedge)
     let wedges = Array.from($('.wedge'))
-    console.log(typeof wedges);
     wedges.forEach(wedge => {
-      console.log(parseInt(wedge.innerText), this.wedge)
       if (parseInt(wedge.innerText) === this.wedge) {
-        console.log("INSIDE");
         wedge.scrollIntoView();
       }
     });
@@ -54,8 +51,8 @@ class Turn {
     if (this.player.currentScore >= 100) {
       this.player.updateCurrentScore(-100);
       if (this.puzzle.correct_answer.toUpperCase().includes(vowel.toUpperCase())) {
-        return true;
         // display each correct vowel on DOM
+        return true;
       } else {
         this.endTurn();
         return false;
@@ -65,9 +62,9 @@ class Turn {
 
   solvePuzzle(guess) {
     if (guess.toUpperCase() === this.puzzle.correct_answer.toUpperCase()) {
-      this.player.updateTotalScrore(this.player.currentScore);
-      return true;
+      this.player.updateTotalScore(this.player.currentScore);
       // end Round method
+      return true;
     } else {
       this.endTurn();
       return false;
