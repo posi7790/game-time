@@ -36,7 +36,7 @@ class Turn {
     if (this.puzzle.correct_answer.toUpperCase().includes(consonant.toUpperCase())) {
       $(`*[data-letter="${consonant}"]`).removeClass('hidden');
       let numberOfInstances = this.puzzle.correct_answer.toUpperCase().split('').filter(letter => letter === consonant).length;
-      this.player.totalCurrentScore(this.wedge * numberOfInstances);
+      this.player.updateCurrentScore(this.wedge * numberOfInstances);
       $(`.player-score--${this.player.id}`).text(`Round Score: ${this.player.currentScore}`);
       console.log(true)
       return true;
