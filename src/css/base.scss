@@ -88,6 +88,7 @@ body {
 .game-section {
   display: flex;
   height: 250px;
+  justify-content: space-around;
 }
 
 .wheel {
@@ -203,26 +204,26 @@ body {
 }
 
 .wheel {
-  height:200px;
-  width: 100px;
-  background-color: aqua;
+  height: 100%; 
+  width: 150px;
   overflow: auto;
   scroll-behavior: smooth;
   animation: scroll infinite;
 }
 
 .wedge {
-  min-height: 200px;
-  width: 98px;
+  min-height: 250px;
+  width: 150px;
+  font-size: 2em; 
   text-align: center;
-  background-color: tomato;
   display: flex;
   flex-direction: column;
   // flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
 }
 
 ::-webkit-scrollbar {
