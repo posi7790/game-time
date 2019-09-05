@@ -10,8 +10,6 @@ class Turn {
   }
 
   spinWheel() {
-    // spin wheel on DOM, get wedge value
-    $('.button--spin').attr("disabled", true);
     this.wedge = `${this.wheel[this.round.game
       .getRandomInteger(this.wheel.length - 1)]}`;
     let wedges = Array.from($('.wedge'))
@@ -28,16 +26,11 @@ class Turn {
     } else if (this.wedge === 'LOSE A TURN') {
       this.endTurn();
     } else {
-      // enable consonants
       $('.consonant').addClass('ready-to-pick');
-      // disable everything else
-      // prompt user to pick a consonant
     }
   }
 
   guessConsonant(consonant) {
-    $('.consonant').removeClass('ready-to-pick');
-    $('.button--spin').removeAttr("disabled")
     if (this.puzzle.correct_answer.toUpperCase()
       .includes(consonant.toUpperCase())) {
       $(`*[data-letter="${consonant}"]`).removeClass('hidden');
@@ -49,6 +42,9 @@ class Turn {
       $(`.player-score--${this.player.id}`)
         .text(`Round Score: ${this.player.roundScore}`);
       console.log(true)
+      if (this.player.roundScore >= 100) {
+        $('.button--vowel').attr("disabled", false);
+      }
       return true;
     } else {
       this.endTurn();
@@ -58,15 +54,17 @@ class Turn {
   }
 
   buyVowel(vowel) {
-    if (this.player.currentScore >= 100) {
+    if (this.player.roundScore >= 100) {
       this.player.updateRoundScore(-100);
+      $(`.player-score--${this.player.id}`)
+        .text(`Round Score: ${this.player.roundScore}`);
       if (this.puzzle.correct_answer.toUpperCase()
         .includes(vowel.toUpperCase())) {
-        // display each correct vowel on DOM
-        return true;
+        $(`*[data-letter="${vowel}"]`).removeClass('hidden');
+        console.log(true, vowel);
       } else {
         this.endTurn();
-        return false;
+        console.log(false, vowel);
       }
     }
   }
@@ -87,9 +85,15 @@ class Turn {
   }
 
   endTurn() {
+    console.log('End Turn')
+    $('.button--spin').removeAttr("disabled");
     this.round.currentPlayer++;
     if (this.round.currentPlayer === 3) {
       this.round.currentPlayer = 0;
+    }
+    this.player = this.round.getCurrentPlayer();
+    if (this.player.roundScore >= 100) {
+      $('.button--vowel').attr("disabled", false);
     }
   }
 }

@@ -59,14 +59,25 @@ function instantiatePlayers() {
 }
 
 $('.button--vowel').click(() => {
-
+  $('.vowel').addClass('ready-to-pick');
+  $('.button--vowel').removeAttr('disabled');
 });
+
+$('.vowel').click((event) => {
+  console.log(event.target.innerText)
+  turn.buyVowel(event.target.innerText);
+  $('.vowel').removeClass('ready-to-pick')
+});
+
 $('.button--spin').click(() => {
+  $('.button--spin').attr("disabled", true);
   turn.spinWheel();
 });
 
 $('.consonant').click((event) => {
   turn.guessConsonant(event.target.innerText);
+  $('.consonant').removeClass('ready-to-pick');
+  $('.button--spin').removeAttr("disabled");
 });
 
 $('.button--reset').click(() => {
