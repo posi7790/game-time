@@ -181,6 +181,14 @@ body {
   width: 100%;
 }
 
+.player {
+  opacity: 0.2;
+}
+
+.current-player {
+  opacity: 1;
+}
+
 .player-name {
   font-size: 2em;
   margin: 20px 0px 5px 0px;

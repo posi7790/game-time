@@ -87,10 +87,12 @@ class Turn {
   }
 
   endTurn() {
+    $(`player${this.player.id}-info`).removeClass('current-player');
     this.round.currentPlayer++;
     if (this.round.currentPlayer === 3) {
       this.round.currentPlayer = 0;
     }
+    $(`player${this.player.id}-info`).addClass('current-player');
   }
 }
 
