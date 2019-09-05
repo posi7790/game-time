@@ -36,7 +36,7 @@ class Turn {
       $(`*[data-letter="${consonant}"]`).removeClass('hidden');
       let numberOfInstances =
         this.puzzle.correct_answer.toUpperCase().split('').filter(letter => {
-          return letter === consonant
+          return letter === consonant;
         }).length;
       this.player.updateRoundScore(this.wedge * numberOfInstances);
       $(`.player-score--${this.player.id}`)
@@ -66,18 +66,16 @@ class Turn {
   }
 
   solvePuzzle(guess) {
+    console.log(guess.toUpperCase(), this.puzzle.correct_answer.toUpperCase())
     if (guess.toUpperCase() === this.puzzle.correct_answer.toUpperCase()) {
       this.player.updateGameScore(this.player.roundScore);
-      // end Round method
+      $(`.letter`).removeClass('hidden');
+      this.round.game.endRound();
       return true;
     } else {
       this.endTurn();
       return false;
     }
-  }
-
-  quitGame() {
-
   }
 
   endTurn() {

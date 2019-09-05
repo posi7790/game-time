@@ -69,6 +69,21 @@ export default {
       }
     });
     $('.wheel').html(html);
+  },
+
+  displayRound(round) {
+    $('.round').text(`Round: ${round}`);
+  },
+
+  displaySolveModal() {
+    $('.solve-puzzle').css('display', 'block');
+    $('.gameplay').css('opacity', 0.2);
+  },
+
+  hideSolveModal() {
+    $('.solve-puzzle').hide();
+    $('.input--solve-puzzle').val('').css('color', 'white');
+    $('.gameplay').css('opacity', 1);
   }
 
 }

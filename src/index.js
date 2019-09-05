@@ -46,6 +46,7 @@ function startNewGame() {
   domUpdates.appendPlayerInfo(players);
   domUpdates.displayPuzzle(round.currentPuzzle);
   domUpdates.displayWheel(round.wheelData);
+  domUpdates.displayRound(game.currentRound)
 }
 
 function instantiatePlayers() {
@@ -57,6 +58,31 @@ function instantiatePlayers() {
   )
   return players;
 }
+
+$('.button--solve').click(() => {
+  domUpdates.displaySolveModal();
+});
+
+$('.button--solve-puzzle').click(() => {
+  let guess = $('.input--solve-puzzle').val();
+  let isCorrect = turn.solvePuzzle(guess);
+  if (isCorrect) {
+    $('.input--solve-puzzle').val('You live for now');
+    domUpdates.displayRound(game.currentRound)
+    // pick a puzzle
+    round.choosePuzzle();
+    // generate new wheel
+    round.randomizeWheel();
+    domUpdates.displayPuzzle(round.currentPuzzle);
+    domUpdates.displayWheel(round.wheelData);
+    turn = new Turn(round);
+  } else {
+    $('.input--solve-puzzle').val('Better luck next time').css('color', 'red');
+  }
+  setTimeout(function () {
+    domUpdates.hideSolveModal();
+  }, 3000);
+});
 
 $('.button--vowel').click(() => {
   $('.vowel').addClass('ready-to-pick');

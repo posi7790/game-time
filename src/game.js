@@ -7,7 +7,7 @@ class Game {
     this.puzzleData = data.puzzles;
     this.puzzleBank = [];
     this.bonusPuzzle = {};
-    this.currentRound = 0;
+    this.currentRound = 1;
   }
 
   getRandomInteger(max) {
@@ -30,17 +30,11 @@ class Game {
     this.bonusPuzzle = combinedPuzzleBank[puzzleIndex];
   }
 
-  startRound() {
-    this.currentRound++;
-    let round = new Round(this);
-    round.choosePuzzle();
-    round.randomizeWheel();
-  }
-
   endRound() {
-    this.startRound();
+    this.currentRound++
+    console.log(this.currentRound)
+    // take player with highest total score
     if (this.currentRound === 4) {
-      // take player with highest total score
       // let bonusRound = new BonusRound(player, bonusPuzzle, bonusWheel)
     }
     if (this.currentRound > 4) {

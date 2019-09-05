@@ -96,20 +96,22 @@ body {
   margin: auto;
   overflow: auto;
   scroll-behavior: smooth;
-  width: 25%;
+  width: 150px;
 }
 
 .wedge {
-  border: 4px solid;
+  border-bottom: 4px solid;
+  border-top: 4px solid;
+  border-right: 2px solid;
+  border-left: 2px solid;
   text-align: center;
-  background-color: tomato;
   display: flex;
-  font-size: 1.5em;
+  font-size: 2em;
   flex-direction: column;
   justify-content: center;
   margin: auto;
   min-height: 250px;
-  width: 120px;
+  width: 150px;
 }
 
 .death-wedge {
@@ -165,6 +167,10 @@ body {
   color: black;
 }
 
+.cat-round-wrapper {
+  display: flex;
+}
+
 .category {
   background: rgba(0, 0, 0, 0.8);
   border: 2px solid black;
@@ -172,6 +178,19 @@ body {
   margin-bottom: 15px;
   margin-right: 15px;
   padding: 20px;
+  width: 75%;
+}
+
+.round {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid white;
+  display: flex;
+  font-size: 2em;
+  justify-content: center;
+  margin-bottom: 15px;
+  vertical-align: middle;
+  width: 25%;
 }
 
 .player-section {
@@ -259,4 +278,38 @@ body {
 .button--new-game {
   display: flex;
   margin: auto;
+}
+
+.solve-puzzle {
+  border: 2px solid white;
+  display: none;
+  height: 250px;
+  position: absolute;
+  right: 7%;
+  top: 62%;
+  width: 1000px;
+  z-index: 100;
+}
+
+.input--solve-puzzle {
+  background: black;
+  color: white;
+  font-size: 2em;
+  height: 75%;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.button--solve-puzzle {
+  background: black;
+  color: white;
+  cursor: pointer;
+  font-size: 1.8em;
+  height: 25%;
+  width: 100%;
+
+  &:hover {
+    color: red;
+  }
 }
