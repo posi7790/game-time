@@ -87,12 +87,12 @@ body {
 
 .game-section {
   display: flex;
-  height: 250px;
+  height: 327px;
 }
 
 .wheel {
   animation: scroll infinite;
-  height: 200px;
+  height: 250px;
   margin: auto;
   overflow: auto;
   scroll-behavior: smooth;
@@ -108,8 +108,8 @@ body {
   flex-direction: column;
   justify-content: center;
   margin: auto;
-  min-height: 200px;
-  width: 98px;
+  min-height: 250px;
+  width: 120px;
 }
 
 .death-wedge {

@@ -103,3 +103,7 @@ function quitGame() {
 $('.button--new-game').click(() => {
   domUpdates.fadeInIntroPage();
 });
+
+$('.button--go-back').click(() => {
+  domUpdates.fadeOutQuitPage();
+});

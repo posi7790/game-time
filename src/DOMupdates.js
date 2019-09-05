@@ -21,6 +21,11 @@ export default {
     $('.intro-page').delay(2500).fadeIn(4000);
   },
 
+  fadeOutQuitPage() {
+    $('.quit-screen').fadeOut(2500);
+    $('.gameplay').delay(2500).fadeIn(4000);
+  },
+
   appendPlayerInfo(players) {
     players.forEach((player, index) => {
       $(`.player-name--${index + 1}`).text(player.name);
