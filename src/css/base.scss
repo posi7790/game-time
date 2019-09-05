@@ -123,12 +123,18 @@ body {
   /* make scrollbar transparent */
 }
 
+.board-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 75%;
+}
+
 .board {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  width: 75%;
   padding: 10px;
   margin: 20px 0px;
 }
@@ -149,10 +155,6 @@ body {
   width: 55px;
 }
 
-.break {
-  display: block;
-}
-
 .space {
   background-color: white;
 }
@@ -161,6 +163,15 @@ body {
   background-color: black;
   border-color: white;
   color: black;
+}
+
+.category {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid black;
+  font-size: 2em;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  padding: 20px;
 }
 
 .player-section {
