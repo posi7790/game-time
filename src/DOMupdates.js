@@ -21,6 +21,11 @@ export default {
     $('.intro-page').delay(2500).fadeIn(4000);
   },
 
+  fadeOutQuitPage() {
+    $('.quit-screen').fadeOut(2500);
+    $('.gameplay').delay(2500).fadeIn(4000);
+  },
+
   appendPlayerInfo(players) {
     players.forEach((player, index) => {
       $(`.player-name--${index + 1}`).text(player.name);
@@ -56,7 +61,11 @@ export default {
   displayWheel(wheelData) {
     let html = ``;
     wheelData.forEach(wedge => {
-      html += `<div class="wedge">${wedge}</div>`;
+      if (wedge === 'BANKRUPT' || wedge === 'LOSE A TURN') {
+        html += `<div class="wedge death-wedge">${wedge}</div>`;
+      } else {
+        html += `<div class="wedge number-wedge">${wedge}</div>`;
+      }
     });
     $('.wheel').html(html);
   }

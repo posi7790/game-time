@@ -92,7 +92,36 @@ body {
 }
 
 .wheel {
+  animation: scroll infinite;
+  height: 250px;
+  margin: auto;
+  overflow: auto;
+  scroll-behavior: smooth;
   width: 25%;
+}
+
+.wedge {
+  border: 4px solid;
+  text-align: center;
+  background-color: tomato;
+  display: flex;
+  font-size: 1.5em;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  min-height: 250px;
+  width: 120px;
+}
+
+.death-wedge {
+  background-color: black;
+  font-size: 1em;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  width: 0px;
+  /* make scrollbar transparent */
 }
 
 .board {

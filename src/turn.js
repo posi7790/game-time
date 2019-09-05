@@ -11,19 +11,16 @@ class Turn {
 
   spinWheel() {
     // spin wheel on DOM, get wedge value
-    this.wedge = this.wheel[this.round.game.getRandomInteger(this.wheel.length - 1)];
+    this.wedge = `${this.wheel[this.round.game.getRandomInteger(this.wheel.length - 1)]}`;
     console.log(this.wedge)
     let wedges = Array.from($('.wedge'))
-    console.log(typeof wedges);
     wedges.forEach(wedge => {
-      console.log(parseInt(wedge.innerText), this.wedge)
-        if (parseInt(wedge.innerText) === this.wedge) {
-          console.log("INSIDE");
-           wedge.scrollIntoView();
-        }
-      });
+      if (wedge.innerText === this.wedge) {
+        wedge.scrollIntoView();
+      }
+    });
     if (this.wedge === 'BANKRUPT') {
-      this.player.currentScore = 0;
+      this.player.zeroCurrentScore();
     } else if (this.wedge === 'LOSE A TURN') {
       this.endTurn();
     } else {
@@ -39,7 +36,7 @@ class Turn {
     if (this.puzzle.correct_answer.toUpperCase().includes(consonant.toUpperCase())) {
       $(`*[data-letter="${consonant}"]`).removeClass('hidden');
       let numberOfInstances = this.puzzle.correct_answer.toUpperCase().split('').filter(letter => letter === consonant).length;
-      this.player.currentScore += this.wedge * numberOfInstances;
+      this.player.updateCurrentScore(this.wedge * numberOfInstances);
       $(`.player-score--${this.player.id}`).text(`Round Score: ${this.player.currentScore}`);
       console.log(true)
       return true;
@@ -52,10 +49,10 @@ class Turn {
 
   buyVowel(vowel) {
     if (this.player.currentScore >= 100) {
-      this.player.currentScore -= 100;
+      this.player.updateCurrentScore(-100);
       if (this.puzzle.correct_answer.toUpperCase().includes(vowel.toUpperCase())) {
-        return true;
         // display each correct vowel on DOM
+        return true;
       } else {
         this.endTurn();
         return false;
@@ -65,9 +62,9 @@ class Turn {
 
   solvePuzzle(guess) {
     if (guess.toUpperCase() === this.puzzle.correct_answer.toUpperCase()) {
-      this.player.totalScore += this.player.currentScore;
-      return true;
+      this.player.updateTotalScore(this.player.currentScore);
       // end Round method
+      return true;
     } else {
       this.endTurn();
       return false;
