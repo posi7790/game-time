@@ -56,7 +56,11 @@ export default {
   displayWheel(wheelData) {
     let html = ``;
     wheelData.forEach(wedge => {
-      html += `<div class="wedge">${wedge}</div>`;
+      if (wedge === 'BANKRUPT' || wedge === 'LOSE A TURN') {
+        html += `<div class="wedge death-wedge">${wedge}</div>`;
+      } else {
+        html += `<div class="wedge number-wedge">${wedge}</div>`;
+      }
     });
     $('.wheel').html(html);
   }

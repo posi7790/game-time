@@ -11,11 +11,11 @@ class Turn {
 
   spinWheel() {
     // spin wheel on DOM, get wedge value
-    this.wedge = this.wheel[this.round.game.getRandomInteger(this.wheel.length - 1)];
+    this.wedge = `${this.wheel[this.round.game.getRandomInteger(this.wheel.length - 1)]}`;
     console.log(this.wedge)
     let wedges = Array.from($('.wedge'))
     wedges.forEach(wedge => {
-      if (parseInt(wedge.innerText) === this.wedge) {
+      if (wedge.innerText === this.wedge) {
         wedge.scrollIntoView();
       }
     });
