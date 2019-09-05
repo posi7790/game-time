@@ -11,7 +11,9 @@ class Turn {
 
   spinWheel() {
     // spin wheel on DOM, get wedge value
-    this.wedge = `${this.wheel[this.round.game.getRandomInteger(this.wheel.length - 1)]}`;
+    $('.button--spin').attr("disabled", true);
+    this.wedge = `${this.wheel[this.round.game
+      .getRandomInteger(this.wheel.length - 1)]}`;
     console.log(this.wedge)
     let wedges = Array.from($('.wedge'))
     wedges.forEach(wedge => {
@@ -33,11 +35,17 @@ class Turn {
 
   guessConsonant(consonant) {
     $('.consonant').css("pointer-events", "none")
-    if (this.puzzle.correct_answer.toUpperCase().includes(consonant.toUpperCase())) {
+    $('.button--spin').removeAttr("disabled")
+    if (this.puzzle.correct_answer.toUpperCase()
+      .includes(consonant.toUpperCase())) {
       $(`*[data-letter="${consonant}"]`).removeClass('hidden');
-      let numberOfInstances = this.puzzle.correct_answer.toUpperCase().split('').filter(letter => letter === consonant).length;
+      let numberOfInstances =
+        this.puzzle.correct_answer.toUpperCase().split('').filter(letter => {
+          return letter === consonant
+        }).length;
       this.player.updateCurrentScore(this.wedge * numberOfInstances);
-      $(`.player-score--${this.player.id}`).text(`Round Score: ${this.player.currentScore}`);
+      $(`.player-score--${this.player.id}`)
+        .text(`Round Score: ${this.player.currentScore}`);
       console.log(true)
       return true;
     } else {
@@ -50,7 +58,8 @@ class Turn {
   buyVowel(vowel) {
     if (this.player.currentScore >= 100) {
       this.player.updateCurrentScore(-100);
-      if (this.puzzle.correct_answer.toUpperCase().includes(vowel.toUpperCase())) {
+      if (this.puzzle.correct_answer.toUpperCase()
+        .includes(vowel.toUpperCase())) {
         // display each correct vowel on DOM
         return true;
       } else {
