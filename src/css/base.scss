@@ -87,7 +87,8 @@ body {
 
 .game-section {
   display: flex;
-  height: 327px;
+  height: 250px;
+  justify-content: space-around;
 }
 
 .wheel {
@@ -312,4 +313,5 @@ body {
   &:hover {
     color: red;
   }
+
 }
