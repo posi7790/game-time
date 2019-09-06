@@ -76,6 +76,7 @@ class Turn {
 
   endTurn() {
     domUpdates.toggleButton($('.button--spin'), false);
+    domUpdates.toggleButton($('.button--solve'), false);
     domUpdates.changeCurrentPlayer(this.player.id);
     this.round.currentPlayer++;
     if (this.round.currentPlayer === 3) {

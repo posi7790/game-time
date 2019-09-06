@@ -34,7 +34,10 @@ class Game {
   endRound() {
     this.currentRound++
     domUpdates.resetLetters();
-
+    this.players.forEach(player => {
+      player.zeroRoundScore();
+    })
+    domUpdates.appendPlayerInfo(this.players);
     if (this.currentRound === 4) {
       // let bonusRound = new BonusRound(player, bonusPuzzle, bonusWheel)
     }
