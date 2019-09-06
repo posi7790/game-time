@@ -1,17 +1,7 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you import jQuery into a JS file if you use jQuery in that file
+// Imports
 import $ from 'jquery';
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import './css/normalize.css';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-
-console.log('This is the JavaScript entry file - your code begins here.');
-
-/* ------------------------------------- */
 import Game from './game'
 import Player from './player'
 import data from './data'
@@ -19,9 +9,8 @@ import domUpdates from './domUpdates'
 import Round from './round';
 import Turn from './turn';
 
-// ** Event Listeners ** //
+// Event Listeners
 let game, round, turn, players;
-
 
 $('.button--start').click(() => {
   startNewGame()
@@ -41,11 +30,12 @@ function startNewGame() {
   round.randomizeWheel();
   // start first players turn
   turn = new Turn(round);
-
+  // update DOM
   domUpdates.fadeOutIntroPage();
   domUpdates.appendPlayerInfo(players);
   domUpdates.displayPuzzle(round.currentPuzzle);
   domUpdates.displayWheel(round.wheelData);
+  domUpdates.displayRound(game.currentRound)
 }
 
 function instantiatePlayers() {
@@ -58,15 +48,58 @@ function instantiatePlayers() {
   return players;
 }
 
-$('.button--vowel').click(() => {
-
+$('.button--solve').click(() => {
+  domUpdates.toggleButton($('.button--solve-puzzle'), false);
+  domUpdates.displaySolveModal();
 });
+
+$('.button--solve-puzzle').click(() => {
+  domUpdates.toggleButton($('.button--solve-puzzle'), true);
+  let guess = $('.input--solve-puzzle').val();
+  let isCorrect = turn.solvePuzzle(guess);
+  if (isCorrect) {
+    $('.input--solve-puzzle').val('You live for now');
+    domUpdates.displayRound(game.currentRound)
+    // pick a puzzle
+    round.choosePuzzle();
+    // generate new wheel
+    round.randomizeWheel();
+    domUpdates.displayPuzzle(round.currentPuzzle);
+    domUpdates.displayWheel(round.wheelData);
+    turn = new Turn(round);
+  } else {
+    $('.input--solve-puzzle').val('Better luck next time').css('color', 'red');
+  }
+  setTimeout(function () {
+    domUpdates.hideSolveModal();
+  }, 3000);
+});
+
+$('.button--vowel').click(() => {
+  domUpdates.toggleButton($('.button--spin'), true);
+  domUpdates.toggleButton($('.button--solve'), true);
+  domUpdates.enableVowels();
+});
+
+$('.vowel').click((event) => {
+  turn.buyVowel(event.target.innerText);
+  domUpdates.disableVowels(event.target);
+  domUpdates.toggleButton($('.button--solve'), false);
+  domUpdates.toggleButton($('.button--spin'), false);
+});
+
 $('.button--spin').click(() => {
+  domUpdates.toggleButton($('.button--vowel'), true);
+  domUpdates.toggleButton($('.button--solve'), true);
+  domUpdates.toggleButton($('.button--spin'), true);
   turn.spinWheel();
 });
 
 $('.consonant').click((event) => {
   turn.guessConsonant(event.target.innerText);
+  domUpdates.disableConsonant(event.target);
+  domUpdates.toggleButton($('.button--spin'), false);
+  domUpdates.toggleButton($('.button--solve'), false);
 });
 
 $('.button--reset').click(() => {
@@ -74,22 +107,28 @@ $('.button--reset').click(() => {
 });
 
 function resetGame() {
-  let players = instantiatePlayers();
+  domUpdates.changeCurrentPlayer(round.getCurrentPlayer().id);
+  players = instantiatePlayers();
   // make new game
-  let game = new Game(players, data);
+  game = new Game(players, data);
   // generate a new puzzlebank  
   game.generatePuzzleBank();
   // start a new round
-  let round = new Round(game);
+  round = new Round(game);
   // pick a puzzle
   round.choosePuzzle();
   // generate new wheel
   round.randomizeWheel();
+  // start new turn
+  turn = new Turn(round);
 
+  // update DOM
+  domUpdates.changeCurrentPlayer(round.getCurrentPlayer().id);
   domUpdates.appendPlayerInfo(players);
-
   domUpdates.displayPuzzle(round.currentPuzzle);
   domUpdates.displayWheel(round.wheelData);
+  domUpdates.displayRound(game.currentRound);
+  domUpdates.resetLetters();
 }
 
 $('.button--quit').click(() => {
@@ -101,5 +140,10 @@ function quitGame() {
 }
 
 $('.button--new-game').click(() => {
+  resetGame();
   domUpdates.fadeInIntroPage();
+});
+
+$('.button--go-back').click(() => {
+  domUpdates.fadeOutQuitPage();
 });

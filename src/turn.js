@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import domUpdates from './domUpdates';
 
 class Turn {
   constructor(round) {
@@ -10,60 +11,62 @@ class Turn {
   }
 
   spinWheel() {
-    // spin wheel on DOM, get wedge value
-    this.wedge = `${this.wheel[this.round.game.getRandomInteger(this.wheel.length - 1)]}`;
-    console.log(this.wedge)
-    let wedges = Array.from($('.wedge'))
-    wedges.forEach(wedge => {
-      if (wedge.innerText === this.wedge) {
-        wedge.scrollIntoView();
+    this.wedge = `${this.wheel[this.round.game
+      .getRandomInteger(this.wheel.length - 1)]}`;
+    domUpdates.spinWheelOnDOM(this.wedge);
+    // Give wheel half a second to spin
+    setTimeout(() => {
+      if (this.wedge === 'BANKRUPT') {
+        this.player.zeroRoundScore();
+        domUpdates.appendPlayerInfo([this.player]);
+        this.endTurn();
+      } else if (this.wedge === 'LOSE A TURN') {
+        this.endTurn();
+      } else {
+        domUpdates.enableConsonants();
       }
-    });
-    if (this.wedge === 'BANKRUPT') {
-      this.player.zeroCurrentScore();
-    } else if (this.wedge === 'LOSE A TURN') {
-      this.endTurn();
-    } else {
-      // enable consonants
-      $('.consonant').css("pointer-events", "auto")
-      // disable everything else
-      // prompt user to pick a consonant
-    }
+    }, 500);
   }
 
   guessConsonant(consonant) {
-    $('.consonant').css("pointer-events", "none")
-    if (this.puzzle.correct_answer.toUpperCase().includes(consonant.toUpperCase())) {
+    if (this.puzzle.correct_answer.toUpperCase()
+      .includes(consonant.toUpperCase())) {
       $(`*[data-letter="${consonant}"]`).removeClass('hidden');
-      let numberOfInstances = this.puzzle.correct_answer.toUpperCase().split('').filter(letter => letter === consonant).length;
-      this.player.updateCurrentScore(this.wedge * numberOfInstances);
-      $(`.player-score--${this.player.id}`).text(`Round Score: ${this.player.currentScore}`);
-      console.log(true)
+      let numberOfInstances =
+        this.puzzle.correct_answer.toUpperCase().split('').filter(letter => {
+          return letter === consonant;
+        }).length;
+      this.player.updateRoundScore(this.wedge * numberOfInstances);
+      domUpdates.appendPlayerInfo([this.player]);
+      if (this.player.roundScore >= 100) {
+        domUpdates.toggleButton($('.button--vowel'), false);
+      }
       return true;
     } else {
       this.endTurn();
-      console.log(false)
       return false;
     }
   }
 
   buyVowel(vowel) {
-    if (this.player.currentScore >= 100) {
-      this.player.updateCurrentScore(-100);
-      if (this.puzzle.correct_answer.toUpperCase().includes(vowel.toUpperCase())) {
-        // display each correct vowel on DOM
-        return true;
+    if (this.player.roundScore >= 100) {
+      this.player.updateRoundScore(-100);
+      domUpdates.appendPlayerInfo([this.player]);
+      if (this.puzzle.correct_answer.toUpperCase()
+        .includes(vowel.toUpperCase())) {
+        $(`*[data-letter="${vowel}"]`).removeClass('hidden');
       } else {
         this.endTurn();
-        return false;
       }
     }
   }
 
   solvePuzzle(guess) {
+    console.log(this.currentPuzzle)
     if (guess.toUpperCase() === this.puzzle.correct_answer.toUpperCase()) {
-      this.player.updateTotalScore(this.player.currentScore);
-      // end Round method
+      this.player.updateGameScore(this.player.roundScore);
+      $(`.letter`).removeClass('hidden');
+      this.round.game.endRound();
       return true;
     } else {
       this.endTurn();
@@ -71,15 +74,23 @@ class Turn {
     }
   }
 
-  quitGame() {
-
-  }
-
   endTurn() {
+    domUpdates.toggleButton($('.button--spin'), false);
+    domUpdates.toggleButton($('.button--solve'), false);
+    domUpdates.changeCurrentPlayer(this.player.id);
     this.round.currentPlayer++;
     if (this.round.currentPlayer === 3) {
       this.round.currentPlayer = 0;
     }
+    this.player = this.round.getCurrentPlayer();
+    if (this.player.roundScore >= 100) {
+      domUpdates.toggleButton($('.button--vowel'), false);
+
+    } else {
+      domUpdates.toggleButton($('.button--vowel'), true);
+
+    }
+    domUpdates.changeCurrentPlayer(this.player.id);
   }
 }
 
