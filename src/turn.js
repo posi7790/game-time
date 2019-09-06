@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import domUpdates from './domUpdates';
 
 class Turn {
   constructor(round) {
@@ -12,22 +13,19 @@ class Turn {
   spinWheel() {
     this.wedge = `${this.wheel[this.round.game
       .getRandomInteger(this.wheel.length - 1)]}`;
-    let wedges = Array.from($('.wedge'))
-    wedges.forEach(wedge => {
-      if (wedge.innerText === this.wedge) {
-        wedge.scrollIntoView();
+    domUpdates.spinWheelOnDOM(this.wedge);
+    // Give wheel half a second to spin
+    setTimeout(() => {
+      if (this.wedge === 'BANKRUPT') {
+        this.player.zeroRoundScore();
+        domUpdates.appendPlayerInfo([this.player]);
+        this.endTurn();
+      } else if (this.wedge === 'LOSE A TURN') {
+        this.endTurn();
+      } else {
+        domUpdates.enableConsonants();
       }
-    });
-    if (this.wedge === 'BANKRUPT') {
-      this.player.zeroRoundScore();
-      $(`.player-score--${this.player.id}`)
-        .text(`Round Score: ${this.player.roundScore}`);
-      this.endTurn();
-    } else if (this.wedge === 'LOSE A TURN') {
-      this.endTurn();
-    } else {
-      $('.consonant').addClass('ready-to-pick');
-    }
+    }, 500);
   }
 
   guessConsonant(consonant) {
@@ -39,10 +37,9 @@ class Turn {
           return letter === consonant;
         }).length;
       this.player.updateRoundScore(this.wedge * numberOfInstances);
-      $(`.player-score--${this.player.id}`)
-        .text(`Round Score: ${this.player.roundScore}`);
+      domUpdates.appendPlayerInfo([this.player]);
       if (this.player.roundScore >= 100) {
-        $('.button--vowel').attr("disabled", false);
+        domUpdates.toggleButton($('.button--vowel'), false);
       }
       return true;
     } else {
@@ -54,8 +51,7 @@ class Turn {
   buyVowel(vowel) {
     if (this.player.roundScore >= 100) {
       this.player.updateRoundScore(-100);
-      $(`.player-score--${this.player.id}`)
-        .text(`Round Score: ${this.player.roundScore}`);
+      domUpdates.appendPlayerInfo([this.player]);
       if (this.puzzle.correct_answer.toUpperCase()
         .includes(vowel.toUpperCase())) {
         $(`*[data-letter="${vowel}"]`).removeClass('hidden');
@@ -66,7 +62,7 @@ class Turn {
   }
 
   solvePuzzle(guess) {
-    console.log(guess.toUpperCase(), this.puzzle.correct_answer.toUpperCase())
+    console.log(this.currentPuzzle)
     if (guess.toUpperCase() === this.puzzle.correct_answer.toUpperCase()) {
       this.player.updateGameScore(this.player.roundScore);
       $(`.letter`).removeClass('hidden');
@@ -79,19 +75,21 @@ class Turn {
   }
 
   endTurn() {
-    $('.button--spin').removeAttr("disabled");
-    $(`.player${this.player.id}-info`).removeClass('current-player');
+    domUpdates.toggleButton($('.button--spin'), false);
+    domUpdates.changeCurrentPlayer(this.player.id);
     this.round.currentPlayer++;
     if (this.round.currentPlayer === 3) {
       this.round.currentPlayer = 0;
     }
     this.player = this.round.getCurrentPlayer();
     if (this.player.roundScore >= 100) {
-      $('.button--vowel').attr("disabled", false);
+      domUpdates.toggleButton($('.button--vowel'), false);
+
     } else {
-      $('.button--vowel').attr("disabled", true);
+      domUpdates.toggleButton($('.button--vowel'), true);
+
     }
-    $(`.player${this.player.id}-info`).addClass('current-player');
+    domUpdates.changeCurrentPlayer(this.player.id);
   }
 }
 

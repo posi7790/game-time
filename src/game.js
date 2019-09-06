@@ -1,4 +1,4 @@
-import Round from "./round";
+import domUpdates from "./domUpdates";
 
 class Game {
   constructor(players, data) {
@@ -25,15 +25,16 @@ class Game {
   }
 
   generateBonusPuzzle() {
-    let combinedPuzzleBank = [...this.puzzleData.one_word_answers.puzzle_bank, ...this.puzzleData.two_word_answers.puzzle_bank, ...this.puzzleData.three_word_answers.puzzle_bank, ...this.puzzleData.four_word_answers.puzzle_bank]
+    let combinedPuzzleBank = this.puzzleData.one_word_answers.puzzle_bank
+      .concat(this.puzzleData.two_word_answers.puzzle_bank, this.puzzleData.three_word_answers.puzzle_bank, this.puzzleData.four_word_answers.puzzle_bank);
     let puzzleIndex = this.getRandomInteger(combinedPuzzleBank.length - 1);
     this.bonusPuzzle = combinedPuzzleBank[puzzleIndex];
   }
 
   endRound() {
     this.currentRound++
-    console.log(this.currentRound)
-    // take player with highest total score
+    domUpdates.resetLetters();
+
     if (this.currentRound === 4) {
       // let bonusRound = new BonusRound(player, bonusPuzzle, bonusWheel)
     }
