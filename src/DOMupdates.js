@@ -27,12 +27,10 @@ export default {
   },
 
   appendPlayerInfo(players) {
-    players.forEach((player, index) => {
-      $(`.player-name--${index + 1}`).text(player.name);
-      $(`player-score--${index + 1}`)
-        .text(`Round Score: ${player.currentScore}`);
-      $(`player-total-score--${index + 1}`)
-        .text(`Game Score: ${player.totalScore}`);
+    players.forEach((player) => {
+      $(`.player-name--${player.id}`).text(player.name);
+      $(`.player-score--${player.id}`).text(`Round Score: ${player.roundScore}`);
+      $(`.player-total-score--${player.id}`).text(`Game Score: ${player.gameScore}`);
     })
   },
 
@@ -69,6 +67,69 @@ export default {
       }
     });
     $('.wheel').html(html);
+  },
+
+  displayRound(round) {
+    $('.round').text(`Round: ${round}`);
+  },
+
+  displayScore(player, roundScore, gameScore) {
+    $(`.player-score--${player}`)
+      .text(`Round Score: ${roundScore}`);
+    $(`.player-total-score--${player}`)
+      .text(`Game Score: ${gameScore}`);
+  },
+
+  displaySolveModal() {
+    $('.solve-puzzle').css('display', 'block');
+    $('.gameplay').css('opacity', 0.2);
+  },
+
+  hideSolveModal() {
+    $('.solve-puzzle').hide();
+    $('.input--solve-puzzle').val('').css('color', 'white');
+    $('.gameplay').css('opacity', 1);
+  },
+
+  spinWheelOnDOM(currentWedge) {
+    let wedges = Array.from($('.wedge'))
+    wedges.forEach(wedge => {
+      if (wedge.innerText === currentWedge) {
+        wedge.scrollIntoView();
+      }
+    });
+  },
+
+  changeCurrentPlayer(player) {
+    $(`.player${player}-info`).toggleClass('current-player');
+  },
+
+  enableVowels() {
+    $('.vowel').addClass('ready-to-pick');
+    $('.button--vowel').removeAttr('disabled');
+  },
+
+  disableVowels(vowel) {
+    $('.vowel').removeClass('ready-to-pick');
+    $(vowel).addClass('picked');
+  },
+
+  enableConsonants() {
+    $('.consonant').addClass('ready-to-pick');
+  },
+
+  disableConsonant(consonant) {
+    $('.consonant').removeClass('ready-to-pick');
+    $(consonant).addClass('picked');
+  },
+
+  resetLetters() {
+    $('.consonant').removeClass('picked');
+    $('.vowel').removeClass('picked');
+  },
+
+  toggleButton(button, toggle) {
+    button.attr("disabled", toggle);
   }
 
 }

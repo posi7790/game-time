@@ -1,4 +1,4 @@
-import Round from "./round";
+import domUpdates from "./domUpdates";
 
 class Game {
   constructor(players, data) {
@@ -7,7 +7,7 @@ class Game {
     this.puzzleData = data.puzzles;
     this.puzzleBank = [];
     this.bonusPuzzle = {};
-    this.currentRound = 0;
+    this.currentRound = 1;
   }
 
   getRandomInteger(max) {
@@ -25,22 +25,20 @@ class Game {
   }
 
   generateBonusPuzzle() {
-    let combinedPuzzleBank = [...this.puzzleData.one_word_answers.puzzle_bank, ...this.puzzleData.two_word_answers.puzzle_bank, ...this.puzzleData.three_word_answers.puzzle_bank, ...this.puzzleData.four_word_answers.puzzle_bank]
+    let combinedPuzzleBank = this.puzzleData.one_word_answers.puzzle_bank
+      .concat(this.puzzleData.two_word_answers.puzzle_bank, this.puzzleData.three_word_answers.puzzle_bank, this.puzzleData.four_word_answers.puzzle_bank);
     let puzzleIndex = this.getRandomInteger(combinedPuzzleBank.length - 1);
     this.bonusPuzzle = combinedPuzzleBank[puzzleIndex];
   }
 
-  startRound() {
-    this.currentRound++;
-    let round = new Round(this);
-    round.choosePuzzle();
-    round.randomizeWheel();
-  }
-
   endRound() {
-    this.startRound();
+    this.currentRound++
+    domUpdates.resetLetters();
+    this.players.forEach(player => {
+      player.zeroRoundScore();
+    })
+    domUpdates.appendPlayerInfo(this.players);
     if (this.currentRound === 4) {
-      // take player with highest total score
       // let bonusRound = new BonusRound(player, bonusPuzzle, bonusWheel)
     }
     if (this.currentRound > 4) {

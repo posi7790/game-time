@@ -33,11 +33,14 @@
       </div>
       <div class="board-section">
         <div class="board"></div>
-        <div class="category"></div>
+        <div class="cat-round-wrapper">
+          <div class="round"></div>
+          <div class="category"></div>
+        </div>
       </div>
     </section>
     <section class="player-section">
-      <div class="player player1-info">
+      <div class="player player1-info current-player">
         <p class='player-name player-name--1'>Player 1</p>
         <p class='player-score player-score--1'>Round Score: 0</p>
         <p class='player-total-score player-total-score--1'>Game Score: 0</p>
@@ -95,6 +98,10 @@
     <button class="button button--go-back" type="button">Continue Playing</button>
     <button class="button button--new-game" type="button">Start New Game</button>
   </main>
+  <section class='solve-puzzle'>
+    <input type="text" name="solve" class="input--solve-puzzle">
+    <button type="submit" class="button--solve-puzzle">Solve</button>
+  </section>
 </body>
 
 </html>
