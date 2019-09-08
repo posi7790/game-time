@@ -12,14 +12,26 @@ import Turn from './turn';
 // Event Listeners
 let game, round, turn, players;
 
+fetch('https://fe-apps.herokuapp.com/api/v1/gametime/1903/wheel-of-fortune/data')
+  .then(data => data.json())
+  .then(data => getData(data))
+  .then(err => console.log(err))
+
+function getData(data) {
+  return data
+}
+
 $('.button--start').click(() => {
-  startNewGame()
+  let parsedData = getData(data)
+  startNewGame(parsedData)
 });
 
-function startNewGame() {
+function startNewGame(parsedData) {
+  // console.log("pd", parsedData)
+
   players = instantiatePlayers();
   // make new game
-  game = new Game(players, data);
+  game = new Game(players, parsedData);
   // generate a new puzzlebank  
   game.generatePuzzleBank();
   // start a new round
