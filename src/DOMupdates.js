@@ -131,5 +131,4 @@ export default {
   toggleButton(button, toggle) {
     button.attr("disabled", toggle);
   }
-
 }

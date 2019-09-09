@@ -2,7 +2,12 @@ import chai from 'chai';
 import Game from '../src/game.js';
 import Player from '../src/player.js';
 import data from '../src/data.js';
+import domUpdates from '../src/domUpdates.js';
 const expect = chai.expect;
+const spies = require('chai-spies');
+chai.use(spies);
+global.domUpdates = {};
+chai.spy.on(domUpdates, ['resetLetters', 'appendPlayerInfo'], () => {});
 
 describe('Game', function () {
   let player1, player2, player3;
@@ -33,5 +38,13 @@ describe('Game', function () {
   it('should generate a random bonus puzzle', () => {
     game.generateBonusPuzzle();
     expect(game.bonusPuzzle).to.be.an('object');
+  });
+
+  it('should be able to end the current round', () => {
+    game.endRound();
+    expect(game.currentRound).to.equal(2);
+    expect(domUpdates.resetLetters).to.have.been.called(1);
+    expect(domUpdates.appendPlayerInfo).to.have.been.called.with(game.players);
+    expect(player1.roundScore).to.equal(0);
   });
 });
