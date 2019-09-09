@@ -65,9 +65,7 @@ $('.button--solve-puzzle').click(() => {
   if (isCorrect) {
     $('.input--solve-puzzle').val('You live for now');
     domUpdates.displayRound(game.currentRound)
-    // pick a puzzle
     round.choosePuzzle();
-    // generate new wheel
     round.randomizeWheel();
     domUpdates.displayPuzzle(round.currentPuzzle);
     domUpdates.displayWheel(round.wheelData);
