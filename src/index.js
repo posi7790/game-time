@@ -14,16 +14,11 @@ let game, round, turn, players;
 
 fetch('https://fe-apps.herokuapp.com/api/v1/gametime/1903/wheel-of-fortune/data')
   .then(data => data.json())
-  .then(data => getData(data))
+  .then(data => data)
   .catch(err => console.log(err))
 
-function getData(data) {
-  return data
-}
-
 $('.button--start').click(() => {
-  let parsedData = getData(data)
-  startNewGame(parsedData)
+  startNewGame(data)
 });
 
 function startNewGame(parsedData) {
