@@ -113,27 +113,8 @@ $('.button--reset').click(() => {
 
 function resetGame() {
   domUpdates.changeCurrentPlayer(round.getCurrentPlayer().id);
-  // players = instantiatePlayers();
-  // make new game
   getData();
-  // game = new Game(players, data);
-  // generate a new puzzlebank  
-  // game.generatePuzzleBank();
-  // start a new round
-  // round = new Round(game);
-  // pick a puzzle
-  // round.choosePuzzle();
-  // generate new wheel
-  // round.randomizeWheel();
-  // start new turn
-  // turn = new Turn(round);
-
-  // update DOM
   domUpdates.changeCurrentPlayer(round.getCurrentPlayer().id);
-  // domUpdates.appendPlayerInfo(players);
-  // domUpdates.displayPuzzle(round.currentPuzzle);
-  // domUpdates.displayWheel(round.wheelData);
-  // domUpdates.displayRound(game.currentRound);
   domUpdates.resetLetters();
 }
 
