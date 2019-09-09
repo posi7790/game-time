@@ -2,10 +2,10 @@
 import $ from 'jquery';
 import './css/base.scss';
 import './css/normalize.css';
-import Game from './game'
-import Player from './player'
-import data from './data'
-import domUpdates from './domUpdates'
+import Game from './game';
+import Player from './player';
+import data from './data';
+import domUpdates from './domUpdates';
 import Round from './round';
 import Turn from './turn';
 
@@ -14,11 +14,16 @@ let game, round, turn, players;
 
 fetch('https://fe-apps.herokuapp.com/api/v1/gametime/1903/wheel-of-fortune/data')
   .then(data => data.json())
-  .then(data => data)
+  .then(data => getData(data))
   .catch(err => console.log(err))
 
+function getData(data) {
+  return data
+}
+
 $('.button--start').click(() => {
-  startNewGame(data)
+  let parsedData = getData(data)
+  startNewGame(parsedData)
 });
 
 function startNewGame(parsedData) {
