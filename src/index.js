@@ -4,7 +4,6 @@ import './css/base.scss';
 import './css/normalize.css';
 import Game from './game'
 import Player from './player'
-import data from './data'
 import domUpdates from './domUpdates'
 import Round from './round';
 import Turn from './turn';
@@ -12,23 +11,17 @@ import Turn from './turn';
 // Event Listeners
 let game, round, turn, players;
 
-fetch('https://fe-apps.herokuapp.com/api/v1/gametime/1903/wheel-of-fortune/data')
+function getData() {
+  fetch('https://fe-apps.herokuapp.com/api/v1/gametime/1903/wheel-of-fortune/data')
   .then(data => data.json())
-  .then(data => getData(data))
-  .catch(err => console.log(err))
-
-function getData(data) {
-  return data
+  .then(data => startNewGame(data.data))
 }
 
 $('.button--start').click(() => {
-  let parsedData = getData(data)
-  startNewGame(parsedData)
+  getData();
 });
 
 function startNewGame(parsedData) {
-  // console.log("pd", parsedData)
-
   players = instantiatePlayers();
   // make new game
   game = new Game(players, parsedData);
@@ -120,26 +113,27 @@ $('.button--reset').click(() => {
 
 function resetGame() {
   domUpdates.changeCurrentPlayer(round.getCurrentPlayer().id);
-  players = instantiatePlayers();
+  // players = instantiatePlayers();
   // make new game
-  game = new Game(players, data);
+  getData();
+  // game = new Game(players, data);
   // generate a new puzzlebank  
-  game.generatePuzzleBank();
+  // game.generatePuzzleBank();
   // start a new round
-  round = new Round(game);
+  // round = new Round(game);
   // pick a puzzle
-  round.choosePuzzle();
+  // round.choosePuzzle();
   // generate new wheel
-  round.randomizeWheel();
+  // round.randomizeWheel();
   // start new turn
-  turn = new Turn(round);
+  // turn = new Turn(round);
 
   // update DOM
   domUpdates.changeCurrentPlayer(round.getCurrentPlayer().id);
-  domUpdates.appendPlayerInfo(players);
-  domUpdates.displayPuzzle(round.currentPuzzle);
-  domUpdates.displayWheel(round.wheelData);
-  domUpdates.displayRound(game.currentRound);
+  // domUpdates.appendPlayerInfo(players);
+  // domUpdates.displayPuzzle(round.currentPuzzle);
+  // domUpdates.displayWheel(round.wheelData);
+  // domUpdates.displayRound(game.currentRound);
   domUpdates.resetLetters();
 }
 
