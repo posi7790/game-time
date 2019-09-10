@@ -47,7 +47,13 @@ Click this link:
 
 <details>
   <summary>Start</summary>
-  ![Start up gif](https://github.com/JEduardoRJx/game-time/blob/master/images/start-game.gif)         
+  ![Start up gif]( https://github.com/JEduardoRJx/game-time/blob/master/images/start-game.gif )         
+</details>
+
+<details>
+  <summary>Game Play</summary>
+  ![Gameplay gif]( https://github.com/JEduardoRJx/game-time/blob/master/images/solve.gif )    
+  ![Gameplay gif]( https://github.com/JEduardoRJx/game-time/blob/master/images/vowel.gif )    
 </details>
 
 ## Gameplay
