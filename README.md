@@ -52,8 +52,8 @@ Click this link:
 
 <details>
   <summary>Game Play</summary>
-  ![Gameplay gif]( https://github.com/JEduardoRJx/game-time/blob/master/images/solve.gif )    
-  ![Gameplay gif]( https://github.com/JEduardoRJx/game-time/blob/master/images/vowel.gif )    
+  ![Gameplay gif solve puzzle]( https://github.com/JEduardoRJx/game-time/blob/master/images/solve.gif )    
+  ![Gameplay gif buy a vowel]( https://github.com/JEduardoRJx/game-time/blob/master/images/vowel.gif )    
 </details>
 
 ## Gameplay
