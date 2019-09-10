@@ -1,6 +1,6 @@
 # GameTime: Wheel of Misfortune
 
-GameTime is a recreation of the game Wheel of Fortune. The purpose of this project is to synthesize knowledge of OOP, classes, and JS fundamentals to create a playable game. 
+GameTime is a recreation of the game Wheel of Fortune. The purpose of this project is to synthesize knowledge of OOP, classes, and JS fundamentals to create a playable game. A spooky, misfortunate theme was given to the game to give it a personal touch.
 
 ## Setup
 
@@ -43,6 +43,7 @@ Click this link:
 * Webpack
 
 ## Screenshots
+
 
 
 ## Authors
