@@ -42,7 +42,6 @@ class Game {
       // let bonusRound = new BonusRound(player, bonusPuzzle, bonusWheel)
     }
     if (this.currentRound > 4) {
-      // end game - winner message with prize image (add bonus prize to total score)
     }
   }
 }

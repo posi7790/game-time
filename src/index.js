@@ -6,10 +6,11 @@ import Game from './game'
 import Player from './player'
 import domUpdates from './domUpdates'
 import Round from './round';
+import BonusRound from './bonusRound'
 import Turn from './turn';
 
 // Event Listeners
-let game, round, turn, players;
+let game, round, turn, players, bonusRound;
 
 function getData() {
   fetch('https://fe-apps.herokuapp.com/api/v1/gametime/1903/wheel-of-fortune/data')
@@ -29,6 +30,7 @@ function startNewGame(parsedData) {
   game.generatePuzzleBank();
   // start a new round
   round = new Round(game);
+  bonusRound = new BonusRound(game);
   // pick a puzzle
   round.choosePuzzle();
   // generate new wheel
@@ -132,3 +134,13 @@ $('.button--new-game').click(() => {
 $('.button--go-back').click(() => {
   domUpdates.fadeOutQuitPage();
 });
+
+function startBonusRound() {
+  if (game.currentRound === 5) {
+    let bonusRound = new BonusRound(game);
+    let turn = new Turn(bonusRound);
+    turn.player = bonusRound.findWinner();
+    game.generateBonusPuzzle();
+    domUpdates.displayPuzzle(game.bonusPuzzle);
+  }
+}

@@ -62,7 +62,6 @@ class Turn {
   }
 
   solvePuzzle(guess) {
-    console.log(this.currentPuzzle)
     if (guess.toUpperCase() === this.puzzle.correct_answer.toUpperCase()) {
       this.player.updateGameScore(this.player.roundScore);
       $(`.letter`).removeClass('hidden');
