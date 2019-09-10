@@ -45,6 +45,10 @@ Click this link:
 
 ## Screenshots
 
+<details>
+  <summary>Start</summary>
+  ![Start up gif](https://github.com/JEduardoRJx/game-time/blob/master/images/start-game.gif)         
+</details>
 
 ## Gameplay
 
