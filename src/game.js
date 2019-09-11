@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import domUpdates from "./domUpdates";
 
 class Game {
@@ -38,11 +39,12 @@ class Game {
       player.zeroRoundScore();
     })
     domUpdates.appendPlayerInfo(this.players);
-    if (this.currentRound === 4) {
-      // let bonusRound = new BonusRound(player, bonusPuzzle, bonusWheel)
-    }
-    if (this.currentRound > 4) {
-    }
+    domUpdates.toggleButton($('.button--vowel'), true);
+    // if (this.currentRound === 4) {
+    //   // let bonusRound = new BonusRound(player, bonusPuzzle, bonusWheel)
+    // }
+    // if (this.currentRound > 4) {
+    // }
   }
 }
 

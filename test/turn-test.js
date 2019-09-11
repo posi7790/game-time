@@ -10,7 +10,7 @@ const expect = chai.expect;
 const spies = require('chai-spies');
 chai.use(spies);
 global.domUpdates = {};
-chai.spy.on(domUpdates, ['enableConsonants', 'toggleButton', 'changeCurrentPlayer'], () => {});
+chai.spy.on(domUpdates, ['spinWheelOnDOM','enableConsonants', 'toggleButton', 'changeCurrentPlayer'], () => {});
 
 describe('Turn', function () {
   let player1, player2, player3;
