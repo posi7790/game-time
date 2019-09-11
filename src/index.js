@@ -14,8 +14,8 @@ let game, round, turn, players, bonusRound;
 
 function getData() {
   fetch('https://fe-apps.herokuapp.com/api/v1/gametime/1903/wheel-of-fortune/data')
-  .then(data => data.json())
-  .then(data => startNewGame(data.data))
+    .then(data => data.json())
+    .then(data => startNewGame(data.data))
 }
 
 $('.button--start').click(() => {
