@@ -230,11 +230,18 @@ body {
   font-size: 2em;
 }
 
+.button--quit,
+.button--reset {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 500px;
+}
+
 .letter-section {
   background-color: rgba(0, 0, 0, 0.3);
   display: flex;
+  font-size: 1.5em;
   justify-content: space-around;
-  padding: 15px 5px;
+  padding: 10px 5px;
 }
 
 .pick-letter {
