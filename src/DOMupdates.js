@@ -7,6 +7,11 @@ export default {
     $('.quit-screen').delay(2500).fadeIn(4000);
   },
 
+  fadeInEndPage() {
+    $('.gameplay').fadeOut(2500);
+    $('.end-screen').delay(2500).fadeIn(4000);
+  },
+
   appendPlayerQuit(player) {
     $().text(`${player.name} has died`)
   },
