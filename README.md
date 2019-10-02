@@ -47,13 +47,13 @@ Click this link: https://posi7790.github.io/game-time/
 
 <details>
   <summary>Start</summary>
-  ![Start up gif]( https://github.com/JEduardoRJx/game-time/blob/master/images/start-game.gif )         
+    ![start-game](https://user-images.githubusercontent.com/25589695/66062822-a66f9700-e531-11e9-96d7-8ab6f72e0f7f.gif)    
 </details>
 
 <details>
   <summary>Game Play</summary>
-  ![Gameplay gif solve puzzle]( https://github.com/JEduardoRJx/game-time/blob/master/images/solve.gif )    
-  ![Gameplay gif buy a vowel]( https://github.com/JEduardoRJx/game-time/blob/master/images/vowel.gif )    
+    ![solve](https://user-images.githubusercontent.com/25589695/66062817-a2437980-e531-11e9-9da0-c128eababbd5.gif)
+    ![vowel](https://user-images.githubusercontent.com/25589695/66062863-bb4c2a80-e531-11e9-984e-7002c2a89f64.gif)
 </details>
 
 ## Gameplay
