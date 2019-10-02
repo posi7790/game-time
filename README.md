@@ -45,16 +45,14 @@ Click this link: https://posi7790.github.io/game-time/
 
 ## Screenshots
 
-<details>
-  <summary>Start</summary>
-    ![start-game](https://user-images.githubusercontent.com/25589695/66062822-a66f9700-e531-11e9-96d7-8ab6f72e0f7f.gif)    
-</details>
+### Start Game
+![start-game](https://user-images.githubusercontent.com/25589695/66063339-62b06980-e500-11e9-9e56-fe2bb93dc7e8.gif)
 
-<details>
-  <summary>Game Play</summary>
-    ![solve](https://user-images.githubusercontent.com/25589695/66062817-a2437980-e531-11e9-9da0-c128eababbd5.gif)
-    ![vowel](https://user-images.githubusercontent.com/25589695/66062863-bb4c2a80-e531-11e9-984e-7002c2a89f64.gif)
-</details>
+### Buy A Vowel
+![vowel](https://user-images.githubusercontent.com/25589695/66063340-62b06980-e500-11e9-8ad2-175562126e4e.gif)
+
+### Solve Puzzle
+![solve](https://user-images.githubusercontent.com/25589695/66063338-6217d300-e500-11e9-9728-1302d0c2410c.gif)
 
 ## Gameplay
 
