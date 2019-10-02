@@ -28,7 +28,7 @@ Go to http://localhost:8080/ in your browser to view your code running in the br
 
 ### Run in GitHub Pages
 
-Click this link:
+Click this link: https://posi7790.github.io/game-time/
 
 ---
 
